@@ -1,4 +1,4 @@
-package cn.ilpanda.teemo
+package com.ilpanda.arch_common
 
 import org.junit.Test
 

@@ -9,7 +9,7 @@ android {
     compileSdk 30
 
     defaultConfig {
-        applicationId "cn.ilpanda.teemo"
+        applicationId "com.ilpanda.teemo"
         minSdk 21
         targetSdk 29
         versionCode 1

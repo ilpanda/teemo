@@ -1,0 +1,2 @@
+rootProject.name = "Teemo"
+include ':app'

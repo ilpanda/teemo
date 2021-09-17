@@ -1,3 +1,4 @@
 rootProject.name = "Teemo"
 include ':app'
 include ':arch-common'
+include ':arch-debug'

@@ -2,7 +2,7 @@ package com.ilpanda.arch_common.kotlin
 
 import android.content.Context
 import android.view.View
-import com.ilpanda.arch_common.java.ScreenUtil
+import com.ilpanda.arch_common.java.utils.ScreenUtil
 
 fun Context.dipToPx(value: Int): Int = ScreenUtil.dipToPx(this, value)
 fun Context.pxToDip(value: Int): Int = ScreenUtil.pxToDip(this, value.toFloat())

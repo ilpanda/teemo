@@ -16,3 +16,4 @@ Reflect.kt | 对反射的进一步封装。
 String.kt | 可求 String 的 Base64 编码、哈希值等。
 Toast.kt | 对 Toast 进一步封装，处理 API 25 的异常。
 View.kt | View 的扩展，防止用户连续点击，方便控制 View 的显示和隐藏。
+Json.kt  |  Json 的扩展，对 Gson 做了进一步的封装。

@@ -47,4 +47,6 @@ dependencies {
     implementation rootProject.ext.dependencies['kotlin-core']
 
     implementation rootProject.ext.dependencies['okio']
+
+    implementation rootProject.ext.dependencies['gson']
 }

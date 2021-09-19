@@ -1,4 +1,4 @@
-package com.ilpanda.arch_common.java;
+package com.ilpanda.arch_common.java.utils;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

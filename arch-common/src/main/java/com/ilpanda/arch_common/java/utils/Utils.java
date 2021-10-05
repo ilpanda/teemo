@@ -13,13 +13,22 @@ import android.os.StatFs;
 import android.text.TextUtils;
 import android.text.format.Formatter;
 
+import androidx.core.text.TextUtilsCompat;
+import androidx.core.view.ViewCompat;
+
 import java.io.File;
 import java.util.List;
+import java.util.Locale;
 
 public class Utils {
 
     private Utils() {
 
+    }
+
+    public static boolean isRtl() {
+        return TextUtilsCompat.getLayoutDirectionFromLocale(Locale.getDefault()) ==
+                ViewCompat.LAYOUT_DIRECTION_RTL;
     }
 
     public static boolean isMain() {

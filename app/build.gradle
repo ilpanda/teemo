@@ -36,14 +36,7 @@ android {
 dependencies {
     implementation project(':arch-debug')
 
-    implementation rootProject.ext.dependencies['constraintlayout']
-    implementation rootProject.ext.dependencies['recyclerview']
-    implementation rootProject.ext.dependencies['multidex']
-    implementation rootProject.ext.dependencies['exifinterface']
-    implementation rootProject.ext.dependencies['cardview']
-    implementation rootProject.ext.dependencies['start-up']
-    implementation rootProject.ext.dependencies['lifecycle-extensions']
-    kapt rootProject.ext.dependencies['lifecycle-annotation']
+
 
     // Kotlin
     implementation rootProject.ext.dependencies['kotlin-std']

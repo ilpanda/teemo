@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-kapt'
+
 }
 
 android {
@@ -31,8 +33,16 @@ android {
 }
 
 dependencies {
-
+    implementation rootProject.ext.dependencies['constraintlayout']
+    implementation rootProject.ext.dependencies['recyclerview']
+    implementation rootProject.ext.dependencies['multidex']
+    implementation rootProject.ext.dependencies['exifinterface']
+    implementation rootProject.ext.dependencies['cardview']
+    implementation rootProject.ext.dependencies['start-up']
     implementation rootProject.ext.dependencies['appcompat']
+    implementation rootProject.ext.dependencies['lifecycle-extensions']
+    implementation rootProject.ext.dependencies['viewpager2']
+    kapt rootProject.ext.dependencies['lifecycle-annotation']
 
 
     // Kotlin

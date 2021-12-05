@@ -28,8 +28,8 @@ SharePreference.kt | 使用属性代理封装了 SharePreference 。
 组件 | 说明
 ---| ---
 NestedScrollableHost | ViewPage2 中嵌套 RecyclerView 时，处理同向滑动冲突。使用 NestedScrollableHost 作为 RecyclerView 的父布局。
-
-
+HorizonTalToolView | TODO：水平滑动工具栏 View。
+CustomPopWindow | TODO: PopWindow 的链式调用。
 
 
 

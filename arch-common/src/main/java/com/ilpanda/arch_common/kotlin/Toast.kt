@@ -12,7 +12,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
-import com.ilpanda.myadnroid.arch_common.ILog
+import cn.ilpanda.arch.java.base.TMLog
 import kotlin.LazyThreadSafetyMode.NONE
 
 @PublishedApi
@@ -69,7 +69,7 @@ private class SafeToastCtx(ctx: Context) : ContextWrapper(ctx) {
             try {
                 base.addView(view, params)
             } catch (e: WindowManager.BadTokenException) {
-                ILog.e("SafeToast", "Couldn't add Toast to WindowManager", e)
+                TMLog.e("SafeToast", "Couldn't add Toast to WindowManager", e)
             }
         }
     }

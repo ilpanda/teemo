@@ -16,4 +16,9 @@ dependencies {
 
     // gson
     implementation rootProject.ext.dependencies['gson']
+
+    implementation rootProject.ext.dependencies['kotlin-std']
+    implementation rootProject.ext.dependencies['kotlin-reflect']
+
+
 }

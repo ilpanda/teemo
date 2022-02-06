@@ -5,13 +5,14 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.ContextWrapper
 import android.os.Build.VERSION.SDK_INT
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.annotation.StringRes
+import androidx.fragment.app.Fragment
+import com.ilpanda.myadnroid.arch_common.ILog
 import kotlin.LazyThreadSafetyMode.NONE
 
 @PublishedApi
@@ -26,22 +27,21 @@ internal fun Context.createToast(resId: Int, duration: Int): Toast {
     return Toast.makeText(ctx, this.resources.getText(resId), duration)
 }
 
-inline fun Context.toast(@StringRes msgResId: Int) = createToast(msgResId, Toast.LENGTH_SHORT).show()
-
-inline fun View.toast(@StringRes msgResId: Int) = context.toast(msgResId)
-
+// toast
 inline fun Context.toast(msg: CharSequence) = createToast(msg, Toast.LENGTH_SHORT).show()
-
+inline fun Context.toast(@StringRes msgResId: Int) = createToast(msgResId, Toast.LENGTH_SHORT).show()
 inline fun View.toast(msg: CharSequence) = context.toast(msg)
+inline fun View.toast(@StringRes msgResId: Int) = context.toast(msgResId)
+inline fun Fragment.toast(msg: CharSequence) = activity?.toast(msg)
+inline fun Fragment.toast(@StringRes msgResId: Int) = activity?.toast(msgResId)
 
-inline fun View.longToast(@StringRes msgResId: Int) = context.longToast(msgResId)
-
+// long toast
 inline fun Context.longToast(msg: CharSequence) = createToast(msg, Toast.LENGTH_LONG).show()
-
-inline fun Context.longToast(resId: Int) = createToast(resId, Toast.LENGTH_LONG).show()
-
+inline fun Context.longToast(@StringRes resId: Int) = createToast(resId, Toast.LENGTH_LONG).show()
 inline fun View.longToast(msg: CharSequence) = context.longToast(msg)
-
+inline fun View.longToast(@StringRes msgResId: Int) = context.longToast(msgResId)
+inline fun Fragment.longToast(msg: CharSequence) = activity?.longToast(msg)
+inline fun Fragment.longToast(@StringRes msgResId: Int) = activity?.longToast(msgResId)
 
 /**
  * Avoids [WindowManager.BadTokenException] on API 25.
@@ -69,7 +69,7 @@ private class SafeToastCtx(ctx: Context) : ContextWrapper(ctx) {
             try {
                 base.addView(view, params)
             } catch (e: WindowManager.BadTokenException) {
-                Log.e("SafeToast", "Couldn't add Toast to WindowManager", e)
+                ILog.e("SafeToast", "Couldn't add Toast to WindowManager", e)
             }
         }
     }

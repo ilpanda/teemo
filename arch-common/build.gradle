@@ -41,12 +41,15 @@ dependencies {
     implementation rootProject.ext.dependencies['cardview']
     implementation rootProject.ext.dependencies['start-up']
     implementation rootProject.ext.dependencies['appcompat']
-    implementation rootProject.ext.dependencies['lifecycle-extensions']
     implementation rootProject.ext.dependencies['viewpager2']
+    implementation rootProject.ext.dependencies['material']
+
+    implementation rootProject.ext.dependencies['lifecycle-viewmodel']
+    implementation rootProject.ext.dependencies['lifecycle-extensions']
     kapt rootProject.ext.dependencies['lifecycle-annotation']
 
 
-    // Kotlin
+    // kotlin
     implementation rootProject.ext.dependencies['kotlin-std']
     implementation rootProject.ext.dependencies['kotlin-reflect']
     implementation rootProject.ext.dependencies['kotlin-core']
@@ -57,7 +60,7 @@ dependencies {
     // gson
     implementation rootProject.ext.dependencies['gson']
 
-
+    // java common
     implementation('io.github.ilpanda.teemo:teemo-java-common:0.0.1-SNAPSHOT')
 
 

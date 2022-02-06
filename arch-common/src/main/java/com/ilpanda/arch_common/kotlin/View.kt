@@ -1,32 +1,30 @@
 package com.ilpanda.arch_common.kotlin
 
 import android.view.View
+import android.view.ViewTreeObserver
 
 
-/**
- * View 的点击事件
- */
-class SafeClickListener(private val interval: Long, val safeClick: (View) -> Unit) : View.OnClickListener {
-    var lastClickTime: Long = 0;
+class SafeClickListener(private val interval: Long, private val safeClick: View.OnClickListener) : View.OnClickListener {
+    private var lastClickTime: Long = 0;
 
     override fun onClick(v: View?) {
-        if ((System.currentTimeMillis() - lastClickTime) < interval) {
+        if ((System.currentTimeMillis() - lastClickTime) <= interval) {
             return
         }
         lastClickTime = System.currentTimeMillis();
-        v?.let { safeClick(it) };
+        v?.let { safeClick.onClick(v) };
     }
 }
 
 
-fun View.setSafeOnClick(interval: Long = 1000, safeClick: (View) -> Unit) {
+/**
+ * View 防抖动点击
+ * @param interval 点击时间间隔，单位为毫秒，如 600 表示 600 毫秒的多次点击，将视为一次点击
+ */
+fun View.setSafeOnClick(interval: Long = 600, safeClick: View.OnClickListener) {
     setOnClickListener(SafeClickListener(interval, safeClick))
 }
 
-
-/**
- * View 的显示、隐藏
- */
 fun View.show() {
     this.visibility = View.VISIBLE
 }
@@ -35,7 +33,26 @@ fun View.hide() {
     this.visibility = View.INVISIBLE
 }
 
-fun View.remove() {
+fun View.gone() {
     this.visibility = View.GONE
 }
+
+/**
+ * 获取 View 的宽、高
+ */
+fun View.doAddOnGlobalLayoutListener(block: (width: Int, height: Int) -> Unit) {
+    viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+        override fun onGlobalLayout() {
+            viewTreeObserver.removeOnGlobalLayoutListener(this)
+            block(width, height)
+        }
+    })
+}
+
+
+
+
+
+
+
 

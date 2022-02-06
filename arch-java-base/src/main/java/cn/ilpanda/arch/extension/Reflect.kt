@@ -1,4 +1,4 @@
-package com.ilpanda.arch_common.kotlin
+package cn.ilpanda.arch.extension
 
 import kotlin.reflect.KMutableProperty
 import kotlin.reflect.full.declaredMemberFunctions
@@ -28,14 +28,14 @@ inline fun <reified T : Any> T.reflectSetFieldMap(map: Map<String, Any>) {
 }
 
 inline fun <reified T : Any, R> T.reflectGetProperty(name: String): R? =
-        T::class.memberProperties
-                .firstOrNull { it.name == name }
-                ?.apply { isAccessible = true }
-                ?.get(this) as? R
+    T::class.memberProperties
+        .firstOrNull { it.name == name }
+        ?.apply { isAccessible = true }
+        ?.get(this) as? R
 
 
 inline fun <reified T> T.reflectCallFunc(name: String, vararg args: Any?): Any? =
-        T::class.declaredMemberFunctions
-                .firstOrNull { it.name == name }
-                ?.apply { isAccessible = true }
-                ?.call(this, *args)
+    T::class.declaredMemberFunctions
+        .firstOrNull { it.name == name }
+        ?.apply { isAccessible = true }
+        ?.call(this, *args)

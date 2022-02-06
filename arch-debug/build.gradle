@@ -42,7 +42,7 @@ dependencies {
     // 万能 Adapter
     implementation rootProject.ext.dependencies['adapter']
 
-    implementation project(':arch-common')
+    api project(':arch-common')
 
 
 }

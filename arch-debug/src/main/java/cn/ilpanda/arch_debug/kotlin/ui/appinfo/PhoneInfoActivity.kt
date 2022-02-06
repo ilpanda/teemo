@@ -87,7 +87,7 @@ class PhoneInfoActivity : BaseUIActivity() {
         list.add(PhoneDataInfo("设备信息", isHeader = true))
         list.add(PhoneDataInfo("设备厂商 :", DeviceUtils.getManufacturer()))
         list.add(PhoneDataInfo("设备型号 :", DeviceUtils.getModel()))
-        list.add(PhoneDataInfo("系统版本码 :", DeviceUtils.getSDKVersionName()))
+        list.add(PhoneDataInfo("系统版本 :", DeviceUtils.getSDKVersionName()))
         list.add(PhoneDataInfo("系统版本号", DeviceUtils.getSDKVersionCode().toString() + ""))
         list.add(PhoneDataInfo("ABIS :", Arrays.toString(DeviceUtils.getABIs())))
         list.add(PhoneDataInfo("Root :", DeviceUtils.isDeviceRooted().toString()))

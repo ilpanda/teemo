@@ -1,0 +1,44 @@
+apply plugin: 'maven'
+
+
+task androidJavadocs(type: Javadoc) {
+    // 设置源码所在的位置
+    source = android.sourceSets.main.java.sourceFiles
+}
+
+// 生成 javadoc.jar
+task androidJavadocsJar(type: Jar) {
+    // 指定文档名称
+    classifier = 'javadoc' // 后缀为 javadoc ，如 xx-javadoc.jar
+    from androidJavadocs.destinationDir
+}
+
+// 生成 sources.jar
+task androidSourcesJar(type: Jar) {
+    classifier = 'sources'  // 后缀为 sources ，如 xx-sources.jar
+    from android.sourceSets.main.java.srcDirs
+    //android.sourceSets.main.java.sourceFiles
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives androidJavadocsJar
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            // 设置 groupId 通常为包名
+            pom.groupId = 'io.github.ilpanda'
+            // 设置 artifactId
+            pom.artifactId = 'teemo'
+            // 设置插件的版本号
+            pom.version = '2.0.0'
+            // 设置发布路径为工程根目录下面的 repo 文件夹
+            repository(url: uri('../repo'))
+            // 设置发布路径为 Gradle 默认仓库地址，USER_HOME/.m2/repository/ 目录，其中 USER_HOME 表示用户目录，如：/Users/apple/.m2/repository
+            // 发布到 USER_HOME/.m2/repository/ 目录，则项目根目录 build.gradle 中的 repositories 需要添加引入本地仓库  mavenLocal() 。
+            // repository(url: uri(localDefaultRepo))
+        }
+    }
+}

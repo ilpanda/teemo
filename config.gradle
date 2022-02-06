@@ -44,7 +44,7 @@ ext {
             // okhttp
             "okhttp"              : "com.squareup.okhttp3:okhttp:4.9.1",
             // okio
-            "okio"                : "com.squareup.okio:okio:2.10.0",
+            "okio"                : "com.squareup.okio:okio:3.0.0",
 
             // kotlin
             "kotlin-core"         : "androidx.core:core-ktx:1.6.0",

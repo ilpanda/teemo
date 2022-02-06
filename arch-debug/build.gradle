@@ -5,13 +5,12 @@ plugins {
 }
 
 android {
-    compileSdkVersion 30
-
+    compileSdk rootProject.ext.android.compileSdkVersion
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -43,7 +42,7 @@ dependencies {
     // 万能 Adapter
     implementation rootProject.ext.dependencies['adapter']
 
-    api project(':arch-common')
+    implementation project(':arch-common')
 
 
 }

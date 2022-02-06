@@ -7,14 +7,13 @@ apply from: '../publish-mavencentral.gradle'
 apply from: '../upload.gradle'
 
 android {
-    compileSdkVersion 30
 
+    compileSdk rootProject.ext.android.compileSdkVersion
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -61,7 +60,7 @@ dependencies {
     implementation rootProject.ext.dependencies['gson']
 
     // java common
-    implementation('io.github.ilpanda.teemo:teemo-java-common:0.0.1-SNAPSHOT')
+    api('io.github.ilpanda.teemo:teemo-java-common:0.0.1-SNAPSHOT')
 
 
 }

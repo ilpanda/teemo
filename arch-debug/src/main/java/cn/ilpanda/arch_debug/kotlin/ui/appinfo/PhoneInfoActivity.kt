@@ -9,10 +9,10 @@ import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import cn.ilpanda.arch.extension.roundTo
 import cn.ilpanda.arch_debug.R
 import cn.ilpanda.arch_debug.kotlin.baes.BaseUIActivity
 import com.ilpanda.arch_common.java.utils.*
-import com.ilpanda.arch_common.kotlin.roundTo
 import java.util.*
 
 class PhoneInfoActivity : BaseUIActivity() {

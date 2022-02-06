@@ -1,7 +1,4 @@
-package com.ilpanda.arch_common.java.utils;
-
-
-import android.util.Log;
+package cn.ilpanda.arch.java.base;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -19,7 +16,7 @@ public class JsonUtils {
         try {
             t = gson.fromJson(json, clz);
         } catch (Exception e) {
-            Log.e(TAG, json + "\n" + CrashUtil.getThreadStack(e));
+            TMLog.e(TAG, json + "\n" + CrashUtil.getThreadStack(e));
         }
         return t;
     }
@@ -30,7 +27,7 @@ public class JsonUtils {
             Type type = TypeToken.getParameterized(List.class, (Type) clz).getType();
             result = new Gson().fromJson(json, type);
         } catch (Exception e) {
-            Log.e(TAG, json + "\n" + CrashUtil.getThreadStack(e));
+            TMLog.e(TAG, json + "\n" + CrashUtil.getThreadStack(e));
         }
         return result;
     }

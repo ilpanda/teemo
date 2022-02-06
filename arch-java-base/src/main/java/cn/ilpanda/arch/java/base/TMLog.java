@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ilpanda.arch_common.java.utils;
+package cn.ilpanda.arch.java.base;
 
 public class TMLog {
 

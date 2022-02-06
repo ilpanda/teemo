@@ -1,4 +1,4 @@
-package com.ilpanda.arch_common.java.utils;
+package cn.ilpanda.arch.java.base;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

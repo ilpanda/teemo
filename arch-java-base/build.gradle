@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+    id 'kotlin'
+}
+
+apply from: '../publish-mavencentral.gradle'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+dependencies {
+    // okio
+    implementation rootProject.ext.dependencies['okio']
+
+    // gson
+    implementation rootProject.ext.dependencies['gson']
+}

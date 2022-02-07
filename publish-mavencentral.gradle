@@ -83,6 +83,11 @@ afterEvaluate {
                     password ossrhPassword
                 }
             }
+            maven {
+                name = 'CustomLocalMavenRepo'
+                url = "file://${rootDir}/repo"
+            }
+
         }
     }
 }

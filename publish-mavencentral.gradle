@@ -37,9 +37,11 @@ afterEvaluate {
             maven(MavenPublication) {
                 artifact sourceJar // 上传源码
                 if (IS_JAR) {
-                    artifact "$buildDir/libs/${project.name}.jar"
+//                    artifact "$buildDir/libs/${project.name}.jar"
+                    afterEvaluate { artifact(tasks.getByName("jar")) }
                 } else {
                     artifact "$buildDir/outputs/aar/${project.name}-release.aar"
+//                    afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
                 }
                 groupId = GROUP_ID
                 artifactId = ARTIFACT_ID

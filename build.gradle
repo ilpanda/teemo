@@ -31,6 +31,7 @@ allprojects {
         maven { url "http://maven.aliyun.com/nexus/content/repositories/google" }
         maven { url "http://maven.aliyun.com/nexus/content/repositories/gradle-plugin" }
         maven { url "https://maven-central.storage.googleapis.com" }
+        maven { url 'https://jitpack.io' }
         google()
         mavenCentral()
         maven { url 'https://github.com/mak0t0san/stetho-realm/raw/master/maven-repo' }

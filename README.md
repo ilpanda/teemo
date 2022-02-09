@@ -33,5 +33,27 @@ CustomPopWindow | TODO: PopWindow 的链式调用。
 
 
 
+---
+### 模块及其包名
 
+模块名称 | 包名 | 说明
+---| --- | ---
+arch-java-base | teemo-java-base | java 基础库。
+arch-common | teemo-android-common |  android 基础库
+arch-debug | teemo-android-debug | android 调试库，包括 UI。
+arch-epic |  teemo-android-epic |  android epic Hook 框架。
+
+
+---
+### 依赖与声明
+arch-epic 项目中用到了 jitpack 和 ndk :
+```groovy
+allprojects {
+    repositories {
+        ......
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+因此客户端需要手动下载对应版本的 ndk 。
 

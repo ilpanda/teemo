@@ -18,7 +18,7 @@ class PhoneInfoAdapter(sectionHeadResId: Int, layoutResId: Int, data: MutableLis
     }
 }
 
-class PhoneDataInfo(var title: String, var content: String = "", override val isHeader: Boolean = false) : SectionEntity {
+class PhoneDataInfo(var title: String, var content: String? = "", override val isHeader: Boolean = false) : SectionEntity {
 
 
 }

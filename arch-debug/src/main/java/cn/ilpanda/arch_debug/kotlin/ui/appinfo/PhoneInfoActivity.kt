@@ -13,6 +13,9 @@ import cn.ilpanda.arch.extension.roundTo
 import cn.ilpanda.arch_debug.R
 import cn.ilpanda.arch_debug.kotlin.baes.BaseUIActivity
 import com.ilpanda.arch_common.java.utils.*
+import okio.buffer
+import okio.source
+import java.io.File
 import java.util.*
 
 class PhoneInfoActivity : BaseUIActivity() {
@@ -35,7 +38,7 @@ class PhoneInfoActivity : BaseUIActivity() {
         mContent = findViewById(android.R.id.content)
         mRecyclerView = findViewById(R.id.recycler_view)
 
-        rlyScreenRoot.post {
+        rlyScreenRoot.post { // 获取 View 的 x 坐标和 y 坐标,这个坐标是距离手机左上角的坐标系,而不是距离父 View 的 x、y 偏移.
             initView()
         }
     }
@@ -47,13 +50,14 @@ class PhoneInfoActivity : BaseUIActivity() {
 
         // 屏幕信息
         list.add(PhoneDataInfo("屏幕信息", isHeader = true))
-        list.add(PhoneDataInfo("屏幕宽度：", ScreenUtil.getScreenWidth(this).toString() + "px"))
-        list.add(PhoneDataInfo("屏幕高度：", ScreenUtil.getScreenHeight(this).toString() + "px"))
-        list.add(PhoneDataInfo("屏幕实际宽度：", ScreenUtil.getRealScreenWidth(this).toString() + "px"))
-        list.add(PhoneDataInfo("屏幕实际高度：", ScreenUtil.getRealScreenHeight(this).toString() + "px"))
-        list.add(PhoneDataInfo("导航栏高度：", ScreenUtil.getNavigationBarHeight(this).toString() + "px"))
-        list.add(PhoneDataInfo("是否存在导航栏：", ScreenUtil.existsNavigationBar(this).toString() + ""))
-        list.add(PhoneDataInfo("状态栏高度：", ScreenUtil.getStatusBarHeight(this).toString() + "px"))
+        val phoneInfoActivity = this
+        list.add(PhoneDataInfo("屏幕宽度：", ScreenUtil.getScreenWidth(phoneInfoActivity).toString() + "px"))
+        list.add(PhoneDataInfo("屏幕高度：", ScreenUtil.getScreenHeight(phoneInfoActivity).toString() + "px"))
+        list.add(PhoneDataInfo("屏幕实际宽度：", ScreenUtil.getRealScreenWidth(phoneInfoActivity).toString() + "px"))
+        list.add(PhoneDataInfo("屏幕实际高度：", ScreenUtil.getRealScreenHeight(phoneInfoActivity).toString() + "px"))
+        list.add(PhoneDataInfo("是否存在导航栏：", ScreenUtil.existsNavigationBar(phoneInfoActivity).toString() + ""))
+        list.add(PhoneDataInfo("导航栏高度：", ScreenUtil.getNavigationBarHeight(phoneInfoActivity).toString() + "px"))
+        list.add(PhoneDataInfo("状态栏高度：", ScreenUtil.getStatusBarHeight(phoneInfoActivity).toString() + "px"))
         list.add(PhoneDataInfo("华为手机：", QMUIDeviceHelper.isHuawei().toString()))
         list.add(PhoneDataInfo("rlyScreenRoot Height:", rlyScreenRoot.height.toString() + "px"))
         list.add(PhoneDataInfo("Android Content Height:", mContent.height.toString() + "px"))
@@ -80,21 +84,38 @@ class PhoneInfoActivity : BaseUIActivity() {
         list.add(PhoneDataInfo("手机内存信息", isHeader = true))
         list.add(PhoneDataInfo("手机总内存:", (memoryInfo.totalMem / 1.0f / (1024 * 1024 * 1024)).roundTo(2).toString() + "G"))
         list.add(PhoneDataInfo("手机可用内存:", (memoryInfo.availMem / 1.0f / (1024 * 1024 * 1024)).roundTo(2).toString() + "G"))
-        list.add(PhoneDataInfo("手机总磁盘空间:", Utils.getExternalTotalSize(this)))
-        list.add(PhoneDataInfo("手机可用磁盘空间 :", Utils.getExternalAvailableSize(this)))
+        list.add(PhoneDataInfo("手机总磁盘空间:", Utils.getExternalTotalSize(phoneInfoActivity)))
+        list.add(PhoneDataInfo("手机可用磁盘空间 :", Utils.getExternalAvailableSize(phoneInfoActivity)))
 
         // device
         list.add(PhoneDataInfo("设备信息", isHeader = true))
         list.add(PhoneDataInfo("设备厂商 :", DeviceUtils.getManufacturer()))
         list.add(PhoneDataInfo("设备型号 :", DeviceUtils.getModel()))
-        list.add(PhoneDataInfo("系统版本 :", DeviceUtils.getSDKVersionName()))
+        list.add(PhoneDataInfo("系统版本码 :", DeviceUtils.getSDKVersionName()))
         list.add(PhoneDataInfo("系统版本号", DeviceUtils.getSDKVersionCode().toString() + ""))
+        list.add(PhoneDataInfo("CPU 核数 :", Runtime.getRuntime().availableProcessors().toString()))
         list.add(PhoneDataInfo("ABIS :", Arrays.toString(DeviceUtils.getABIs())))
         list.add(PhoneDataInfo("Root :", DeviceUtils.isDeviceRooted().toString()))
-        list.add(PhoneDataInfo("ADB enable :", DeviceUtils.isAdbEnabled(this).toString()))
-        list.add(PhoneDataInfo("开发者模式 :", DeviceUtils.isDevelopmentSettingsEnabled(this).toString()))
-        list.add(PhoneDataInfo("模拟器 :", DeviceUtils.isEmulator(this).toString()))
+        list.add(PhoneDataInfo("ADB enable :", DeviceUtils.isAdbEnabled(phoneInfoActivity).toString()))
+        list.add(PhoneDataInfo("开发者模式 :", DeviceUtils.isDevelopmentSettingsEnabled(phoneInfoActivity).toString()))
+        list.add(PhoneDataInfo("模拟器 :", DeviceUtils.isEmulator(phoneInfoActivity).toString()))
         list.add(PhoneDataInfo("平板 :", DeviceUtils.isTablet().toString()))
+
+        // App Info
+        var appInfo = AppInfoUtil.getAppInfo(phoneInfoActivity)
+
+        list.add(PhoneDataInfo("App 信息", isHeader = true))
+        list.add(PhoneDataInfo("App 包名 :", appInfo?.packageName))
+        list.add(PhoneDataInfo("App 名称 :", appInfo?.name))
+        list.add(PhoneDataInfo("App 版本名称 :", appInfo?.versionName))
+        list.add(PhoneDataInfo("App 版本号 :", appInfo?.versionCode.toString()))
+
+        list.add(PhoneDataInfo("是否为系统 App:", appInfo?.isSystem.toString()))
+        list.add(PhoneDataInfo("是否为Debug App:", AppInfoUtil.isAppDebug(phoneInfoActivity).toString()))
+        list.add(PhoneDataInfo("应用签名的的 MD5 值", AppInfoUtil.getAppSignaturesMD5(phoneInfoActivity, packageName)[0]))
+        list.add(PhoneDataInfo("应用签名的的 SHA1 值", AppInfoUtil.getAppSignaturesSHA1(phoneInfoActivity, packageName)[0]))
+        list.add(PhoneDataInfo("应用签名的的 SHA256 值", AppInfoUtil.getAppSignaturesSHA256(phoneInfoActivity, packageName)[0]))
+        list.add(PhoneDataInfo("应用签名的的 SHA512 值", AppInfoUtil.getAppSignaturesSHA512(phoneInfoActivity, packageName)[0]))
 
         val adapter = PhoneInfoAdapter(R.layout.tm_item_phone_section_info, R.layout.tm_item_phone_info, list)
         mRecyclerView.layoutManager = LinearLayoutManager(mContext)
@@ -108,5 +129,24 @@ class PhoneInfoActivity : BaseUIActivity() {
             val starter = Intent(context, PhoneInfoActivity::class.java)
             context.startActivity(starter)
         }
+    }
+
+
+    class CpuInfo(var key: String, var value: String)
+
+    private fun cpuInfo(): MutableList<CpuInfo> {
+        var cpuList = mutableListOf<CpuInfo>()
+        File("/proc/cpuinfo").source().buffer().use {
+            while (!it.exhausted()) {
+                val line = it.readUtf8Line()
+                line?.let {
+                    val array = line.split(":")
+                    if (array.size > 1) {
+                        cpuList.add(CpuInfo(array[0], array[1]))
+                    }
+                }
+            }
+        }
+        return cpuList
     }
 }

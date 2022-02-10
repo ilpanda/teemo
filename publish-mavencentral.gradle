@@ -19,7 +19,7 @@ ext["ossrhPassword"] = properties.get("ossrhPassword")
 def GROUP_ID = properties.get("maven.groupId")
 def ARTIFACT_ID = properties.get("maven.artifactId")
 def VERSION = properties.get("maven.version")
-def IS_SNAPSHOT = properties.get("maven.snapshot")
+def IS_SNAPSHOT = properties.get("maven.snapshot").toBoolean()
 def IS_JAR = properties.get("maven.isJar").toBoolean()
 
 task sourceJar(type: Jar) {
@@ -53,6 +53,7 @@ afterEvaluate {
                 }
 
                 pom {
+                    // 依赖传递
                     withXml {
                         def dependenciesNode = asNode().appendNode('dependencies')
                         project.configurations.implementation.allDependencies.each {
@@ -65,22 +66,54 @@ afterEvaluate {
                             }
                         }
                     }
+
+                    // 正式发布需要填写以下信息，SNAPSHOT 不填以下信息就可以发布。
+                    name = 'teemo'
+                    url = 'https://github.com/ilpanda/teemo'
+                    description = 'teemo 快跑，我的个人快速调试库。'
+
+                    licenses {
+                        license {
+                            name = 'The Apache Software License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                            distribution = 'repo'
+                            comments = 'A business-friendly OSS license'
+                        }
+                    }
+
+                    scm {
+                        url = 'https://github.com/ilpanda/teemo'
+                        connection = 'scm:git@https://github.com/ilpanda/teemo.git'
+                        developerConnection = 'scm:git@https://github.com/ilpanda/teemo.git'
+                    }
+
+                    developers {
+                        developer {
+                            id = 'ilpanda'
+                            name = 'ilpanda'
+                            email = 'litencent@gmail.com'
+                            url = 'https://github.com/ilpanda/teemo'
+                        }
+                    }
                 }
             }
         }
 
-        // 配置maven 仓库
+        // 配置 maven 仓库
         repositories { RepositoryHandler handler ->
+            // 发布到 maven 在线仓库
             maven {
                 // This is an arbitrary name, you may also use "mavencentral" or
                 // any other name that's descriptive for you
                 name = "teemo"
 
-                def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                // staging 仓库
+                def stagingRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+                // snapshot 仓库
                 def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
                 // You only need this if you want to publish snapshots, otherwise just set the URL
                 // to the release repo directly
-                url = IS_SNAPSHOT ? snapshotsRepoUrl : releasesRepoUrl
+                url = IS_SNAPSHOT ? snapshotsRepoUrl : stagingRepoUrl
 
                 // The username and password we've fetched earlier
                 credentials {
@@ -88,6 +121,7 @@ afterEvaluate {
                     password ossrhPassword
                 }
             }
+            // 发布到项目根路径的 repo 文件夹
             maven {
                 name = 'CustomLocalMavenRepo'
                 url = "file://${rootDir}/repo"

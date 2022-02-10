@@ -36,12 +36,12 @@ CustomPopWindow | TODO: PopWindow 的链式调用。
 ---
 ### 模块及其包名
 
-模块名称 | 包名 | 说明
----| --- | ---
-arch-java-base | teemo-java-base | java 基础库。
-arch-common | teemo-android-common |  android 基础库
-arch-debug | teemo-android-debug | android 调试库，包括 UI。
-arch-epic |  teemo-android-epic |  android epic Hook 框架。
+模块名称 | 包名 | 描述 |  版本说明
+---| --- | --- | ---
+arch-java-base | teemo-java-base | java 基础库。 | io.github.ilpanda.teemo:teemo-java-common:0.0.1-SNAPSHOT
+arch-common | teemo-android-common |  android 基础库 | io.github.ilpanda.teemo:teemo-android-common:0.0.2-SNAPSHOT
+arch-debug | teemo-android-debug | android 调试库，包括 UI。 | 
+arch-epic |  teemo-android-epic |  android epic Hook 框架。 | `io.github.ilpanda.teemo:teemo-android-epic:1.0.0`
 
 
 ---

@@ -4,23 +4,27 @@ apply plugin: 'signing'
 File file = project.file('maven-publish.properties')
 if (!file.exists()) return
 
-// 读取模块目录的 maven-publish.properties
-def properties = new Properties()
-properties.load(project.file('maven-publish.properties').newDataInputStream())
-
 // 读取签名信息
-ext["signing.keyId"] = properties.get("signing.keyId")
-ext["signing.password"] = properties.get("signing.password")
-ext["signing.secretKeyRingFile"] = properties.get("signing.secretKeyRingFile")
-ext["ossrhUsername"] = properties.get("ossrhUsername")
-ext["ossrhPassword"] = properties.get("ossrhPassword")
+def singInfoProperties = new Properties()
+singInfoProperties.load(rootProject.file('local.properties').newDataInputStream())
+ext["signing.keyId"] = singInfoProperties.get("signing.keyId")
+ext["signing.password"] = singInfoProperties.get("signing.password")
+ext["signing.secretKeyRingFile"] = singInfoProperties.get("signing.secretKeyRingFile")
+ext["ossrhUsername"] = singInfoProperties.get("ossrhUsername")
+ext["ossrhPassword"] = singInfoProperties.get("ossrhPassword")
+
+if (ext["signing.keyId"] == null) return
+
+// 读取模块目录的 maven-publish.properties
+def mavenProperties = new Properties()
+mavenProperties.load(project.file('maven-publish.properties').newDataInputStream())
 
 // 读取项目配置信息
-def GROUP_ID = properties.get("maven.groupId")
-def ARTIFACT_ID = properties.get("maven.artifactId")
-def VERSION = properties.get("maven.version")
-def IS_SNAPSHOT = properties.get("maven.snapshot").toBoolean()
-def IS_JAR = properties.get("maven.isJar").toBoolean()
+def GROUP_ID = mavenProperties.get("maven.groupId")
+def ARTIFACT_ID = mavenProperties.get("maven.artifactId")
+def VERSION = mavenProperties.get("maven.version")
+def IS_SNAPSHOT = mavenProperties.get("maven.snapshot").toBoolean()
+def IS_JAR = mavenProperties.get("maven.isJar").toBoolean()
 
 task sourceJar(type: Jar) {
     if (IS_JAR) {

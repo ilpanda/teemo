@@ -37,10 +37,10 @@ afterEvaluate {
             maven(MavenPublication) {
                 artifact sourceJar // 上传源码
                 if (IS_JAR) {
-//                    artifact "$buildDir/libs/${project.name}.jar"
+//                    artifact "$buildDir/libs/${project.name}.jar" 这种写法需要手动打最新版 jar 包
                     afterEvaluate { artifact(tasks.getByName("jar")) }
                 } else {
-//                    artifact "$buildDir/outputs/aar/${project.name}-release.aar"
+//                    artifact "$buildDir/outputs/aar/${project.name}-release.aar" 这种写法需要手动打最新版 aar 包
                     afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
                 }
                 groupId = GROUP_ID

@@ -1,7 +1,7 @@
 apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
-File file = project.file('maven-publish.properties')
+File file = project.file('gradle.properties')
 if (!file.exists()) return
 
 // 读取签名信息
@@ -15,16 +15,12 @@ ext["ossrhPassword"] = singInfoProperties.get("ossrhPassword")
 
 if (ext["signing.keyId"] == null) return
 
-// 读取模块目录的 maven-publish.properties
-def mavenProperties = new Properties()
-mavenProperties.load(project.file('maven-publish.properties').newDataInputStream())
-
-// 读取项目配置信息
-def GROUP_ID = mavenProperties.get("maven.groupId")
-def ARTIFACT_ID = mavenProperties.get("maven.artifactId")
-def VERSION = mavenProperties.get("maven.version")
-def IS_SNAPSHOT = mavenProperties.get("maven.snapshot").toBoolean()
-def IS_JAR = mavenProperties.get("maven.isJar").toBoolean()
+// 读取各个组件的配置信息
+def GROUP_ID = project.ext.MAVEN_GROUPID
+def ARTIFACT_ID = project.ext.MAVEN_ARTIFACTID
+def VERSION = project.ext.MAVEN_VERSION
+def IS_SNAPSHOT = project.ext.MAVEN_VERSION.toBoolean()
+def IS_JAR = project.ext.MAVEN_ISJAR.toBoolean()
 
 task sourceJar(type: Jar) {
     if (IS_JAR) {

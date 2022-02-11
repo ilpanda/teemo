@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
 }
+apply from: '../publish-mavencentral.gradle'
 
 android {
     compileSdk rootProject.ext.android.compileSdkVersion
@@ -42,7 +43,7 @@ dependencies {
     // 万能 Adapter
     implementation rootProject.ext.dependencies['adapter']
 
-    api project(':arch-common')
+    api ('io.github.ilpanda.teemo:teemo-android-common:0.0.4-SNAPSHOT')
 
 
 }

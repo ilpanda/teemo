@@ -19,7 +19,7 @@ if (ext["signing.keyId"] == null) return
 def GROUP_ID = project.ext.MAVEN_GROUPID
 def ARTIFACT_ID = project.ext.MAVEN_ARTIFACTID
 def VERSION = project.ext.MAVEN_VERSION
-def IS_SNAPSHOT = project.ext.MAVEN_VERSION.toBoolean()
+def IS_SNAPSHOT = project.ext.MAVEN_SNAPSHOT.toBoolean()
 def IS_JAR = project.ext.MAVEN_ISJAR.toBoolean()
 
 task sourceJar(type: Jar) {

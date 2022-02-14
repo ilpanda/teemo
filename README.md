@@ -1,8 +1,10 @@
 ### Teemo
+
 提莫快跑！我的日常 Android 开发库。
 
 
 ---
+
 ### 基础库
 
 文件 | 说明
@@ -21,8 +23,8 @@ Reflect.kt | Kotlin 反射的封装。
 Random.kt | 开发过程中，快速生成随机颜色。
 SharePreference.kt | 使用属性代理封装了 SharePreference 。
 
-
 ---
+
 ### 组件库
 
 组件 | 说明
@@ -31,29 +33,32 @@ NestedScrollableHost | ViewPage2 中嵌套 RecyclerView 时，处理同向滑动
 HorizonTalToolView | TODO：水平滑动工具栏 View。
 CustomPopWindow | TODO: PopWindow 的链式调用。
 
-
-
 ---
+
 ### 模块及其包名
 
 模块名称 | 包名 | 描述 |  版本说明
 ---| --- | --- | ---
 arch-java-base | teemo-java-base | java 基础库。 | `io.github.ilpanda.teemo:teemo-java-base:0.0.1-SNAPSHOT`
+arch-toast | teemo-android-toast |  android toast UI 库 | `io.github.ilpanda.teemo:teemo-android-toast:0.0.2-SNAPSHOT`
 arch-common | teemo-android-common |  android 基础库 | `io.github.ilpanda.teemo:teemo-android-common:0.0.4-SNAPSHOT`
 arch-debug | teemo-android-debug | android 调试库，包括 UI。 | `io.github.ilpanda.teemo:teemo-android-debug:0.0.1-SNAPSHOT`
 arch-epic |  teemo-android-epic |  android epic Hook 框架。 | `io.github.ilpanda.teemo:teemo-android-epic:1.0.0`
 
-
 ---
+
 ### 依赖与声明
+
 arch-epic 项目中用到了 jitpack 和 ndk :
+
 ```groovy
 allprojects {
     repositories {
-        ......
+        ... ...
         maven { url 'https://jitpack.io' }
     }
 }
 ```
+
 因此客户端需要手动下载对应版本的 ndk 。
 

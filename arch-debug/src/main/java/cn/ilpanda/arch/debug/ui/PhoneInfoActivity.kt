@@ -89,17 +89,17 @@ class PhoneInfoActivity : BaseUIActivity() {
 
         // device
         list.add(PhoneDataInfo("设备信息", isHeader = true))
-        list.add(PhoneDataInfo("设备厂商 :", DeviceUtils.getManufacturer()))
-        list.add(PhoneDataInfo("设备型号 :", DeviceUtils.getModel()))
-        list.add(PhoneDataInfo("系统版本码 :", DeviceUtils.getSDKVersionName()))
-        list.add(PhoneDataInfo("系统版本号", DeviceUtils.getSDKVersionCode().toString() + ""))
+        list.add(PhoneDataInfo("设备厂商 :", DeviceUtil.getManufacturer()))
+        list.add(PhoneDataInfo("设备型号 :", DeviceUtil.getModel()))
+        list.add(PhoneDataInfo("系统版本码 :", DeviceUtil.getSDKVersionName()))
+        list.add(PhoneDataInfo("系统版本号", DeviceUtil.getSDKVersionCode().toString() + ""))
         list.add(PhoneDataInfo("CPU 核数 :", Runtime.getRuntime().availableProcessors().toString()))
-        list.add(PhoneDataInfo("ABIS :", Arrays.toString(DeviceUtils.getABIs())))
-        list.add(PhoneDataInfo("Root :", DeviceUtils.isDeviceRooted().toString()))
-        list.add(PhoneDataInfo("ADB enable :", DeviceUtils.isAdbEnabled(phoneInfoActivity).toString()))
-        list.add(PhoneDataInfo("开发者模式 :", DeviceUtils.isDevelopmentSettingsEnabled(phoneInfoActivity).toString()))
-        list.add(PhoneDataInfo("模拟器 :", DeviceUtils.isEmulator(phoneInfoActivity).toString()))
-        list.add(PhoneDataInfo("平板 :", DeviceUtils.isTablet().toString()))
+        list.add(PhoneDataInfo("ABIS :", Arrays.toString(DeviceUtil.getABIs())))
+        list.add(PhoneDataInfo("Root :", DeviceUtil.isDeviceRooted().toString()))
+        list.add(PhoneDataInfo("ADB enable :", DeviceUtil.isAdbEnabled(phoneInfoActivity).toString()))
+        list.add(PhoneDataInfo("开发者模式 :", DeviceUtil.isDevelopmentSettingsEnabled(phoneInfoActivity).toString()))
+        list.add(PhoneDataInfo("模拟器 :", DeviceUtil.isEmulator(phoneInfoActivity).toString()))
+        list.add(PhoneDataInfo("平板 :", DeviceUtil.isTablet().toString()))
 
         // App Info
         var appInfo = AppInfoUtil.getAppInfo(phoneInfoActivity)

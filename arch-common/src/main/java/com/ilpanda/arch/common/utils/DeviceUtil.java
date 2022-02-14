@@ -34,9 +34,9 @@ import java.util.Enumeration;
  *     desc  : utils about device
  * </pre>
  */
-public final class DeviceUtils {
+public final class DeviceUtil {
 
-    private DeviceUtils() {
+    private DeviceUtil() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
 

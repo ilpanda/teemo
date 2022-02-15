@@ -1,6 +1,5 @@
 package com.ilpanda.arch.common.utils;
 
-import static android.Manifest.permission.ACCESS_WIFI_STATE;
 import static android.Manifest.permission.CHANGE_WIFI_STATE;
 import static android.content.Context.WIFI_SERVICE;
 
@@ -10,7 +9,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.provider.Settings;
@@ -138,26 +136,6 @@ public final class DeviceUtil {
             }
         }
         return true;
-    }
-
-    @RequiresPermission(ACCESS_WIFI_STATE)
-    private static String getMacAddressByWifiInfo(Context context) {
-        try {
-            final WifiManager wifi = (WifiManager) context.getApplicationContext().getSystemService(WIFI_SERVICE);
-            if (wifi != null) {
-                final WifiInfo info = wifi.getConnectionInfo();
-                if (info != null) {
-                    @SuppressLint("HardwareIds")
-                    String macAddress = info.getMacAddress();
-                    if (!TextUtils.isEmpty(macAddress)) {
-                        return macAddress;
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return "02:00:00:00:00:00";
     }
 
     private static String getMacAddressByNetworkInterface() {

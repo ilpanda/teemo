@@ -1,6 +1,6 @@
 package cn.ilpanda.arch.debug.ui
 
-import cn.ilpanda.arch.R
+import cn.ilpanda.arch.debug.R
 import com.chad.library.adapter.base.BaseSectionQuickAdapter
 import com.chad.library.adapter.base.entity.SectionEntity
 import com.chad.library.adapter.base.viewholder.BaseViewHolder

@@ -11,9 +11,9 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
-import cn.ilpanda.arch.R
-import com.ilpanda.arch.common.utils.ScreenUtil
+import cn.ilpanda.arch.debug.R
 import com.ilpanda.arch.common.kotlin.setSafeOnClick
+import com.ilpanda.arch.common.utils.ScreenUtil
 
 open class BaseUIActivity : BaseActivity() {
 

@@ -9,9 +9,9 @@ import android.widget.FrameLayout
 import android.widget.RelativeLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import cn.ilpanda.arch.extension.roundTo
-import cn.ilpanda.arch.R
+import cn.ilpanda.arch.debug.R
 import cn.ilpanda.arch.debug.baes.BaseUIActivity
+import cn.ilpanda.arch.extension.roundTo
 import com.ilpanda.arch.common.utils.*
 import okio.buffer
 import okio.source

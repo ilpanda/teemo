@@ -19,8 +19,6 @@
 
 package de.robv.android.xposed;
 
-import static de.robv.android.xposed.XposedHelpers.getIntField;
-
 import android.app.AndroidAppHelper;
 import android.os.Build;
 import android.util.Log;
@@ -44,13 +42,15 @@ import me.weishu.epic.art.Epic;
 import me.weishu.epic.art.method.ArtMethod;
 import me.weishu.reflection.Reflection;
 
+import static de.robv.android.xposed.XposedHelpers.getIntField;
+
 public final class DexposedBridge {
 
 	static {
 		try {
-			if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
+			if (Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT) {
 				System.loadLibrary("epic");
-			} else if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH){
+			} else if (Build.VERSION.SDK_INT > Build.VERSION_CODES.ICE_CREAM_SANDWICH){
 				System.loadLibrary("dexposed");
 			} else {
 				throw new RuntimeException("unsupported api level: " + Build.VERSION.SDK_INT);

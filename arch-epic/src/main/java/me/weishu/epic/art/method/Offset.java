@@ -113,12 +113,12 @@ class Offset {
         ART_ACCESS_FLAG_OFFSET = new Offset();
         ART_JNI_ENTRY_OFFSET = new Offset();
 
-        ART_ACCESS_FLAG_OFFSET.setLength(Offset.BitWidth.DWORD);
+        ART_ACCESS_FLAG_OFFSET.setLength(BitWidth.DWORD);
 
         final int apiLevel = Build.VERSION.SDK_INT;
 
         if (Runtime.is64Bit()) {
-            ART_QUICK_CODE_OFFSET.setLength(Offset.BitWidth.QWORD);
+            ART_QUICK_CODE_OFFSET.setLength(BitWidth.QWORD);
             ART_JNI_ENTRY_OFFSET.setLength(BitWidth.QWORD);
             switch (apiLevel) {
                 case Build.VERSION_CODES.S:
@@ -171,7 +171,7 @@ class Offset {
                     throw new RuntimeException("API LEVEL: " + apiLevel + " is not supported now : (");
             }
         } else {
-            ART_QUICK_CODE_OFFSET.setLength(Offset.BitWidth.DWORD);
+            ART_QUICK_CODE_OFFSET.setLength(BitWidth.DWORD);
             ART_JNI_ENTRY_OFFSET.setLength(BitWidth.DWORD);
             switch (apiLevel) {
                 case Build.VERSION_CODES.S:

@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-apply from: '../publish-mavencentral.gradle'
+apply from: rootProject.file('publish-mavencentral.gradle')
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
@@ -47,6 +47,6 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "com.github.tiann:FreeReflection:3.1.0"
-    api 'me.weishu.exposed:exposed-xposedapi:0.4.5'
+    implementation 'me.weishu.exposed:exposed-xposedapi:0.4.5'
 
 }

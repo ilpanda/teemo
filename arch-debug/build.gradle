@@ -44,7 +44,7 @@ dependencies {
     // 万能 Adapter
     implementation rootProject.ext.dependencies['adapter']
 
-    api ('io.github.ilpanda.teemo:teemo-android-common:0.0.5-SNAPSHOT')
+    api ('io.github.ilpanda.teemo:teemo-android-common:0.0.6-SNAPSHOT')
 
 
 }

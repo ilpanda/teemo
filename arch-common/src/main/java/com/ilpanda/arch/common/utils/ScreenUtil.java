@@ -40,9 +40,18 @@ public class ScreenUtil {
         return (int) (dip * context.getResources().getDisplayMetrics().density + 0.5f);
     }
 
+    public static float dipToPxFloat(Context context, int dip) {
+        return dip * context.getResources().getDisplayMetrics().density + 0.5f;
+    }
+
     public static int pxToDip(Context context, float pxValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
+    }
+
+    public static Float pxToDipFloat(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return pxValue / scale + 0.5f;
     }
 
     public static int spToPx(Context context, float spValue) {

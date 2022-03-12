@@ -31,6 +31,13 @@ task sourceJar(type: Jar) {
     archiveClassifier = "sources"
 }
 
+if (IS_JAR) {
+    task packageJavadoc(type: Jar) {
+        from javadoc
+        classifier = 'javadoc'
+    }
+}
+
 afterEvaluate {
     publishing {
         publications { PublicationContainer publicationContainer ->
@@ -38,6 +45,7 @@ afterEvaluate {
                 artifact sourceJar // 上传源码
                 if (IS_JAR) {
 //                    artifact "$buildDir/libs/${project.name}.jar" 这种写法需要手动打最新版 jar 包
+                    artifact packageJavadoc // 发布到正式环境需要 javadoc
                     afterEvaluate { artifact(tasks.getByName("jar")) }
                 } else {
 //                    artifact "$buildDir/outputs/aar/${project.name}-release.aar" 这种写法需要手动打最新版 aar 包

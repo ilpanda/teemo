@@ -58,7 +58,7 @@ dependencies {
     implementation rootProject.ext.dependencies['gson']
 
     // java common
-    api('io.github.ilpanda.teemo:teemo-java-base:0.0.2-SNAPSHOT')
+    api('io.github.ilpanda.teemo:teemo-java-base:0.0.3-SNAPSHOT')
 
 
 }

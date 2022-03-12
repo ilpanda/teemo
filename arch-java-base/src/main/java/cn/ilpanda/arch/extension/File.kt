@@ -57,6 +57,40 @@ private fun File.hash(hashingSink: HashingSink) =
         }
     }
 
+/**
+ * @return 获取指定路径下所有文件，包括子目录。
+ */
+fun File.allFiles(): Sequence<File> {
+    return this.walkTopDown().filter {
+        it.isFile
+    }
+}
+
+/**
+ * Implements the same behaviour as the "touch" utility on Unix. It creates
+ * a new file with size 0 or, if the file exists already, it is opened and
+ * closed without modifying it, but updating the file date and time.
+ * <p>
+ */
+@Throws(IOException::class)
+fun File.touch() {
+    if (!exists()) {
+        if (parentFile != null) {
+            if (!parentFile.mkdirs() && !parentFile.isDirectory) {
+                throw  IOException("Directory '$parent' could not be created");
+            }
+        }
+    }
+    outputStream().use { }
+
+    val success: Boolean = setLastModified(System.currentTimeMillis())
+
+    if (!success) {
+        throw  IOException("Unable to set the last modification time for $this");
+    }
+}
+
+
 
 
 

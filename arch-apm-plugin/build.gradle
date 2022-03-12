@@ -1,0 +1,42 @@
+plugins {
+    id 'groovy'
+    id 'maven'
+    id 'org.jetbrains.kotlin.jvm'
+}
+
+compileGroovy {
+    dependsOn tasks.getByPath('compileKotlin')
+    classpath += files(compileKotlin.destinationDir)
+}
+
+dependencies {
+    implementation gradleApi()   // gradle sdk
+    implementation localGroovy() // groovy sdk
+
+    compileOnly 'com.android.tools.build:gradle:4.1.3'
+
+}
+
+repositories {
+    mavenCentral()
+    google()
+}
+
+
+// 1.apply plugin: "maven"
+// 2.配置 maven 插件中的 uploadArchives 任务
+// 不要在 BuildSrc 目录发布, 需要新加一个 Module 发布
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            // 设置 groupId 通常为包名
+            pom.groupId = 'com.ilpanda'
+            // 设置 artifactId
+            pom.artifactId = 'plugin'
+            // 设置插件的版本号
+            pom.version = '1.0.0'
+            // 设置发布路径为工程根目录下面的 repo 文件夹
+            repository(url: uri('../repo'))
+        }
+    }
+}

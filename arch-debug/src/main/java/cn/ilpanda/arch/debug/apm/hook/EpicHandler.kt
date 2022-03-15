@@ -24,7 +24,7 @@ class PopupWindowHandler : EpicHandler {
             Int::class.java,
             Int::class.java,
             Int::class.java,
-            BaseTraceHook())
+            BaseTraceHook("PopupWindow: showAsDropDown"))
 
         // Hook PopupWindow 的 showAtLocation() 方法
         DexposedBridge.findAndHookMethod(PopupWindow::class.java, "showAtLocation",
@@ -32,10 +32,10 @@ class PopupWindowHandler : EpicHandler {
             Int::class.java,
             Int::class.java,
             Int::class.java,
-            BaseTraceHook())
+            BaseTraceHook("PopupWindow: showAtLocation"))
 
         // Hook PopupWindow 的 dismiss() 方法
-        DexposedBridge.findAndHookMethod(PopupWindow::class.java, "dismiss", BaseTraceHook())
+        DexposedBridge.findAndHookMethod(PopupWindow::class.java, "dismiss", BaseTraceHook("PopupWindow: dismiss"))
     }
 
 }
@@ -54,10 +54,10 @@ class ActivityHandler : EpicHandler {
             Intent::class.java,
             Int::class.java,
             Bundle::class.java,
-            BaseTraceHook())
+            BaseTraceHook("Activity: startActivityForResult"))
 
         // Hook Activity 的 finish 方法
-        DexposedBridge.findAndHookMethod(Activity::class.java, "finish")
+        DexposedBridge.findAndHookMethod(Activity::class.java, "finish", BaseTraceHook("Activity: finish"))
     }
 }
 
@@ -65,10 +65,10 @@ class ActivityHandler : EpicHandler {
 class DialogHandler : EpicHandler {
     override fun handle() {
         // Hook Dialog 的 show() 方法
-        DexposedBridge.hookAllMethods(Dialog::class.java, "show", BaseTraceHook())
+        DexposedBridge.hookAllMethods(Dialog::class.java, "show", BaseTraceHook("Dialog: show"))
 
         // Hook Dialog 的 dismiss() 方法
-        DexposedBridge.hookAllMethods(Dialog::class.java, "dismiss", BaseTraceHook())
+        DexposedBridge.hookAllMethods(Dialog::class.java, "dismiss", BaseTraceHook("Dialog: dismiss"))
     }
 }
 

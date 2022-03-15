@@ -24,54 +24,57 @@ class DefaultBuilder(
     )
 }
 
-class EpicConfig(
-    val isDebug: Boolean = false,
-    val installToast: Boolean = false,
-    val installDialog: Boolean = false,
-    val installPopupWindow: Boolean = false,
-    val installActivity: Boolean = false,
+class EpicConfig private constructor(
+    val isDebug: Boolean = DEFAULT_PROPERTY.isDebug,
+    val installToast: Boolean = DEFAULT_PROPERTY.installToast,
+    val installDialog: Boolean = DEFAULT_PROPERTY.installDialog,
+    val installPopupWindow: Boolean = DEFAULT_PROPERTY.installPopupWindow,
+    val installActivity: Boolean = DEFAULT_PROPERTY.installActivity,
     val customHandlerSet: HashSet<EpicHandler> = hashSetOf(),
-)
+) {
+    class EpicConfigBuilder {
 
-class EpicConfigBuilder {
+        private var defaults: DefaultBuilder
 
-    private var defaults: DefaultBuilder
+        private val customHandlerSet = hashSetOf<EpicHandler>()
 
-    private val customHandlerSet = hashSetOf<EpicHandler>()
+        constructor(debug: Boolean) {
+            defaults = DEFAULT_PROPERTY
+            defaults = defaults.copy(isDebug = debug)
+        }
 
-    constructor() {
-        defaults = DEFAULT_PROPERTY
+        fun installToast(enable: Boolean) = apply {
+            defaults = defaults.copy(installToast = enable)
+        }
+
+        fun installDialog(enable: Boolean) = apply {
+            defaults = defaults.copy(installDialog = enable)
+        }
+
+        fun installPopupWindow(enable: Boolean) = apply {
+            defaults = defaults.copy(installPopupWindow = enable)
+        }
+
+        fun installActivity(enable: Boolean) = apply {
+            defaults = defaults.copy(installActivity = enable)
+        }
+
+        fun installCustomHandler(epicHandler: EpicHandler) = apply {
+            customHandlerSet.add(epicHandler)
+        }
+
+        fun build(): EpicConfig {
+            return EpicConfig(
+                isDebug = defaults.isDebug,
+                installToast = defaults.installToast,
+                installDialog = defaults.installDialog,
+                installPopupWindow = defaults.installPopupWindow,
+                installActivity = defaults.installActivity,
+                customHandlerSet = this.customHandlerSet,
+            )
+        }
+
     }
-
-    fun installToast(enable: Boolean) = apply {
-        defaults = defaults.copy(installToast = enable)
-    }
-
-    fun installDialog(enable: Boolean) = apply {
-        defaults = defaults.copy(installDialog = enable)
-    }
-
-    fun installPopupWindow(enable: Boolean) = apply {
-        defaults = defaults.copy(installPopupWindow = enable)
-    }
-
-    fun installActivity(enable: Boolean) = apply {
-        defaults = defaults.copy(installActivity = enable)
-    }
-
-    fun installCustomHandler(epicHandler: EpicHandler) {
-        customHandlerSet.add(epicHandler)
-    }
-
-    fun build(): EpicConfig {
-        return EpicConfig(
-            isDebug = defaults.isDebug,
-            installToast = defaults.installToast,
-            installDialog = defaults.installDialog,
-            installPopupWindow = defaults.installPopupWindow,
-            installActivity = defaults.installActivity,
-            customHandlerSet = this.customHandlerSet,
-        )
-    }
-
 }
+
+

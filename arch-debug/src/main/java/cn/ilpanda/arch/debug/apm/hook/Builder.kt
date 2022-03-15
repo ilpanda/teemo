@@ -30,7 +30,7 @@ class EpicConfig(
     val installDialog: Boolean = false,
     val installPopupWindow: Boolean = false,
     val installActivity: Boolean = false,
-    val customHandlerSet: HashSet<EpicHandler>,
+    val customHandlerSet: HashSet<EpicHandler> = hashSetOf(),
 )
 
 class EpicConfigBuilder {

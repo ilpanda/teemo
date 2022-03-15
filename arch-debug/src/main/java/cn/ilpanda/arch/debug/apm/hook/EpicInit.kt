@@ -6,7 +6,7 @@ import com.ilpanda.arch.common.utils.DeviceUtil
 object EpicInit {
 
     @JvmStatic
-    fun init(epicConfig: EpicConfig) {
+    fun init(epicConfig: EpicConfig = EpicConfig()) {
 
         // 1. 模拟器不使用 epic
         // 2. 正式发布不使用 epic

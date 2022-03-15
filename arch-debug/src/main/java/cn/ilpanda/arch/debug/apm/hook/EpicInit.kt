@@ -21,19 +21,19 @@ object EpicInit {
 
     private fun initInnerHandler(epicConfig: EpicConfig) {
         if (epicConfig.installDialog) {
-            DialogHandler().handle()
+            epicConfig.customHandlerSet.add(DialogHandler())
         }
 
         if (epicConfig.installToast) {
-            ToastHandler().handle()
+            epicConfig.customHandlerSet.add(ToastHandler())
         }
 
         if (epicConfig.installPopupWindow) {
-            PopupWindowHandler().handle()
+            epicConfig.customHandlerSet.add(PopupWindowHandler())
         }
 
         if (epicConfig.installActivity) {
-            ActivityHandler().handle()
+            epicConfig.customHandlerSet.add(ActivityHandler())
         }
     }
 

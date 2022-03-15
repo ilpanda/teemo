@@ -13,7 +13,10 @@ ext {
     ]
 
     debug = [
-            "leakcanary": "com.squareup.leakcanary:leakcanary-android:2.7"
+            "leakcanary"              : "com.squareup.leakcanary:leakcanary-android:2.7",
+            "teemo-android-common"    : 'io.github.ilpanda.teemo:teemo-android-common:0.0.7-SNAPSHOT',
+            "teemo-android-epic"      : 'io.github.ilpanda.teemo:teemo-android-epic:1.2.0',
+            "teemo-android-epic-no-op": 'io.github.ilpanda.teemo:teemo-android-epic-no-op:1.2.0',
     ]
 
     dependencies = [
@@ -65,5 +68,6 @@ ext {
 
             // adapter
             "adapter"             : "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.4",
+
     ]
 }

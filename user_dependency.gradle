@@ -1,0 +1,41 @@
+import groovy.json.JsonSlurper
+
+
+// 项目根目录声明一个 module_dependency.json，该文件中配置需要调试组件的本地路径
+File file = new File(rootDir.absolutePath, "module_dependency.json")
+if (!file.exists()) return
+
+// 解析 json
+def json = file.getText()
+def jsonSlurper = new JsonSlurper()
+def moduleList = jsonSlurper.parseText(json).findAll { it.useModule }
+
+// 如果 module_dependency.json 中组件为空，或者没有需要调试(即所有组件的 useModule 为 false )的组件，则返回。
+if (moduleList.isEmpty()) return
+
+// 遍历 ModuleList，将需要调试的组件引入工程。
+moduleList.each {
+    include ":${it.module_name}"
+    project(":${it.module_name}").projectDir = new File(it.module_dir)
+}
+
+gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
+
+    @Override
+    void beforeEvaluate(Project projectObj) {
+
+    }
+
+    @Override
+    void afterEvaluate(Project projectObj, ProjectState state) {
+        projectObj.configurations.all { Configuration ->
+            resolutionStrategy {
+                dependencySubstitution {
+                    moduleList.each {
+                        substitute module(it.module_group) with project(":${it.module_name}")
+                    }
+                }
+            }
+        }
+    }
+})

@@ -8,3 +8,5 @@ include ':arch-apm-plugin'
 include ':arch-epic'
 include ':arch-epic-no-op'
 include ':arch-epic-demo'
+
+apply from: "./user_dependency.gradle"

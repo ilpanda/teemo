@@ -1,0 +1,42 @@
+apply plugin: 'com.android.library'
+apply from: '../publish-mavencentral.gradle'
+
+android {
+    compileSdk rootProject.ext.android.compileSdkVersion
+    defaultConfig {
+        minSdk rootProject.ext.android.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
+        versionCode rootProject.ext.android.versionCode
+        versionName rootProject.ext.android.versionName
+
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++11"
+                arguments '-DANDROID_STL=c++_static'
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+//    externalNativeBuild {
+//        cmake {
+//             path "src/main/cpp/CMakeLists.txt"
+//        }
+//    }
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation 'junit:junit:4.12'
+}

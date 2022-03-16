@@ -30,8 +30,19 @@ class EpicConfig private constructor(
     val installDialog: Boolean = DEFAULT_PROPERTY.installDialog,
     val installPopupWindow: Boolean = DEFAULT_PROPERTY.installPopupWindow,
     val installActivity: Boolean = DEFAULT_PROPERTY.installActivity,
-    val customHandlerSet: HashSet<EpicHandler> = hashSetOf(),
+    private val customHandlerSet: HashSet<EpicHandler> = hashSetOf(),
 ) {
+
+    fun addHandler(handler: EpicHandler) {
+        this.customHandlerSet.add(handler)
+    }
+
+    fun handle() {
+        this.customHandlerSet.forEach {
+            it.handle()
+        }
+    }
+
     class EpicConfigBuilder {
 
         private var defaults: DefaultBuilder

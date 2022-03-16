@@ -1,9 +1,12 @@
 ### Teemo
+
 提莫快跑！我的日常 Android 开发库。
 
 
 ---
+
 ### 基础库
+
 文件 | 说明
 ---| ---
 Dimensions.kt | Context、View、Fragment 扩展，用于 dp、sp 和 px 之间的转换。
@@ -21,6 +24,7 @@ Random.kt | 开发过程中，快速生成随机颜色。
 SharePreference.kt | 使用属性代理封装了 SharePreference 。
 
 ---
+
 ### 组件库
 
 组件 | 说明
@@ -30,14 +34,18 @@ HorizonTalToolView | TODO：水平滑动工具栏 View。
 CustomPopWindow | TODO: PopWindow 的链式调用。
 
 ---
+
 ### 模块及其包名
+
 模块名称 | 包名 | 描述 |  版本说明
 ---| --- | --- | ---
-arch-java-base | teemo-java-base | java 基础库。 | `io.github.ilpanda.teemo:teemo-java-base:0.0.3-SNAPSHOT`
+arch-java-base | teemo-java-base | java 基础库。 | `io.github.ilpanda.teemo:teemo-java-base:1.0.0`
 arch-toast | teemo-android-toast |  android toast UI 库 | `io.github.ilpanda.teemo:teemo-android-toast:1.0.0`
-arch-common | teemo-android-common |  android 基础库 | `io.github.ilpanda.teemo:teemo-android-common:0.0.6-SNAPSHOT`
-arch-debug | teemo-android-debug | android 调试库，包括 UI。 | `io.github.ilpanda.teemo:teemo-android-debug:0.0.7-SNAPSHOT`
-arch-epic |  teemo-android-epic |  android epic Hook 框架。 | `io.github.ilpanda.teemo:teemo-android-epic:1.0.0`
+arch-common | teemo-android-common |  android 基础库 | `io.github.ilpanda.teemo:teemo-android-common:1.0.0`
+arch-debug | teemo-android-debug | android 调试库，包括 UI。 | `io.github.ilpanda.teemo:teemo-android-debug:0.0.9-SNAPSHOT`
+arch-epic |  teemo-android-epic |  android epic Hook 框架。 | `io.github.ilpanda.teemo:teemo-android-epic:1.2.0`
+arch-epic |  teemo-android-epic-no-op |  android epic Hook 框架。 | `io.github.ilpanda.teemo:teemo-android-epic-no-op:1.2.0`
+arch-epic-demo |  teemo-android-epic-demo |  android epic Hook 示例框架。 | `io.github.ilpanda.teemo:teemo-android-epic-demo:1.0.0`
 
 
 

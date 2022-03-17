@@ -43,9 +43,9 @@ arch-java-base | teemo-java-base | java 基础库。 | `io.github.ilpanda.teemo:
 arch-toast | teemo-android-toast |  android toast UI 库 | `io.github.ilpanda.teemo:teemo-android-toast:1.0.0`
 arch-common | teemo-android-common |  android 基础库 | `io.github.ilpanda.teemo:teemo-android-common:1.0.0`
 arch-debug | teemo-android-debug | android 调试库，包括 UI。 | `io.github.ilpanda.teemo:teemo-android-debug:0.0.9-SNAPSHOT`
-arch-epic |  teemo-android-epic |  android epic Hook 框架。 | `io.github.ilpanda.teemo:teemo-android-epic:1.2.0`
-arch-epic |  teemo-android-epic-no-op |  android epic Hook 框架。 | `io.github.ilpanda.teemo:teemo-android-epic-no-op:1.2.0`
-arch-epic-demo |  teemo-android-epic-demo |  android epic Hook 示例框架。 | `io.github.ilpanda.teemo:teemo-android-epic-demo:1.0.0`
+arch-epic |  teemo-android-epic |  android epic Hook 框架。 | `io.github.ilpanda.teemo:teemo-android-epic:1.3.0`
+arch-epic |  teemo-android-epic-no-op |  android epic Hook 框架。 | `io.github.ilpanda.teemo:teemo-android-epic-no-op:1.3.0`
+arch-epic-demo |  teemo-android-epic-demo |  android epic Hook 示例框架。 | `io.github.ilpanda.teemo:teemo-android-epic-demo:1.3.0`
 
 
 

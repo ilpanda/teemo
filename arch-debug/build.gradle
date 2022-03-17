@@ -47,7 +47,7 @@ dependencies {
     api rootProject.ext.debug['teemo-android-common']
 
     // epic
-    api rootProject.ext.debug['teemo-android-epic']
+    api rootProject.ext.debug['teemo-android-epic-demo']
 
 
 }

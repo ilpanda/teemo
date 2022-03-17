@@ -3,7 +3,6 @@ apply from: rootProject.file('publish-mavencentral.gradle')
 
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
-    buildToolsVersion rootProject.ext.android.buildToolsVersion
 
     defaultConfig {
         minSdkVersion rootProject.ext.android.minSdkVersion
@@ -46,7 +45,8 @@ android {
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "com.github.tiann:FreeReflection:3.1.0"
+
+    implementation rootProject.ext.debug['teemo-android-free-reflection']
     implementation 'me.weishu.exposed:exposed-xposedapi:0.4.5'
 
 }

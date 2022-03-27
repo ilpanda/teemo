@@ -17,7 +17,7 @@ ext {
             "teemo-android-common"         : 'io.github.ilpanda.teemo:teemo-android-common:1.0.0',
             "teemo-android-epic"           : 'io.github.ilpanda.teemo:teemo-android-epic:1.3.0',
             "teemo-android-epic-no-op"     : 'io.github.ilpanda.teemo:teemo-android-epic-no-op:1.3.0',
-            "teemo-android-epic-demo"     : 'io.github.ilpanda.teemo:teemo-android-epic-demo:1.3.0',
+            "teemo-android-epic-demo"      : 'io.github.ilpanda.teemo:teemo-android-epic-demo:1.3.0',
             "teemo-java-base"              : 'io.github.ilpanda.teemo:teemo-java-base:1.0.0',
             "teemo-android-free-reflection": 'io.github.ilpanda.teemo:teemo-android-free-reflection:1.0.0',
     ]

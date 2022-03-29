@@ -58,6 +58,6 @@ dependencies {
     implementation rootProject.ext.dependencies['gson']
 
     // java base
-    implementation rootProject.ext.debug['teemo-java-base']
+    api rootProject.ext.debug['teemo-java-base']
 
 }

@@ -271,6 +271,7 @@ public final class DeviceUtil {
                 || Build.MODEL.contains("Emulator")
                 || Build.MODEL.contains("Android SDK built for x86")
                 || Build.MANUFACTURER.contains("Genymotion")
+                || Build.MODEL.contains("sdk_gphone64_x86_64")
                 || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
                 || "google_sdk".equals(Build.PRODUCT);
         if (checkProperty) return true;

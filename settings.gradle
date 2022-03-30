@@ -11,3 +11,60 @@ include ':arch-epic-demo'
 include ':arch-free-reflection'
 
 apply from: "./user_dependency.gradle"
+
+
+// gradle
+gradle.buildStarted {
+    println("gradle : buildStarted")
+}
+gradle.settingsEvaluated {
+    println("gradle : settingsEvaluated")
+}
+
+gradle.projectsLoaded {
+    println("gradle : projectsLoaded")
+}
+
+// project
+gradle.beforeProject {
+    println("gradle : beforeProject")
+}
+
+
+gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
+    @Override
+    void beforeEvaluate(Project project) {
+
+    }
+
+    @Override
+    void afterEvaluate(Project project, ProjectState projectState) {
+        println("project : $project ")
+    }
+})
+
+gradle.afterProject {
+    println("gradle : afterProject ")
+
+}
+
+gradle.projectsEvaluated {
+    println("gradle : projectsEvaluated ")
+}
+
+gradle.taskGraph.whenReady {
+    println("gradle : taskGraph.whenReady ")
+}
+
+gradle.taskGraph.beforeTask {
+    println("gradle : taskGraph.beforeTask ")
+}
+
+gradle.taskGraph.afterTask {
+    println("gradle : taskGraph.afterTask ")
+}
+
+// gradle
+gradle.buildFinished {
+    println("gradle : taskGraph.buildFinished ")
+}

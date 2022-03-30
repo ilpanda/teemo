@@ -14,12 +14,13 @@ def jsonSlurper = new JsonSlurper()
 def moduleList = jsonSlurper.parseText(json).findAll { it.useModule }
 if (moduleList.isEmpty()) return
 
-// 遍历 ModuleList，将需要调试的组件引入工程。
+// 遍历 ModuleList，将需要调试的组件 include 引入工程。
 moduleList.each {
     include ":${it.module_name}"
     project(":${it.module_name}").projectDir = new File(it.module_dir)
 }
 
+// 监听 project 配置完成。
 gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
 
     @Override
@@ -32,6 +33,7 @@ gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
         projectObj.configurations.all { Configuration ->
             resolutionStrategy {
                 dependencySubstitution {
+                    // 将 aar 依赖替换为 project 本地依赖。
                     moduleList.each {
                         substitute module(it.module_group) with project(":${it.module_name}")
                     }

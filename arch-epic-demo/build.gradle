@@ -29,12 +29,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    // epic
 }
 
 dependencies {
-
-
-    implementation rootProject.ext.dependencies['okio']
 
     // epic
     api rootProject.ext.debug['teemo-android-epic']

@@ -42,7 +42,7 @@ class PopupWindowHandler : EpicHandler {
 
 class ToastHandler : EpicHandler {
     override fun handle() {
-        DexposedBridge.hookAllMethods(Toast::class.java, "show", BaseTraceHook())
+        DexposedBridge.hookAllMethods(Toast::class.java, "show", BaseTraceHook("Toast: show"))
     }
 }
 

@@ -44,13 +44,17 @@ object EpicInit {
         epicConfig.handle()
     }
 
-    fun isEmulator(context: Context): Boolean {
+    /**
+     * 是否为模拟器
+     */
+    private fun isEmulator(context: Context): Boolean {
         val checkProperty = (Build.FINGERPRINT.startsWith("generic")
                 || Build.FINGERPRINT.toLowerCase().contains("vbox")
                 || Build.FINGERPRINT.toLowerCase().contains("test-keys")
                 || Build.MODEL.contains("google_sdk")
                 || Build.MODEL.contains("Emulator")
                 || Build.MODEL.contains("Android SDK built for x86")
+                || Build.MODEL.contains("sdk_gphone64_x86_64")
                 || Build.MANUFACTURER.contains("Genymotion")
                 || Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic")
                 || "google_sdk" == Build.PRODUCT)

@@ -12,13 +12,13 @@ java {
 
 dependencies {
     // okio
-    implementation rootProject.ext.dependencies['okio']
+    implementation Libs.dep.okio()
 
     // gson
-    implementation rootProject.ext.dependencies['gson']
+    implementation Libs.dep.gson()
 
-    implementation rootProject.ext.dependencies['kotlin-std']
-    implementation rootProject.ext.dependencies['kotlin-reflect']
+    implementation Libs.dep.kotlin_stdlib()
+    implementation Libs.dep.kotlin_reflect()
 
 
 }

@@ -7,12 +7,12 @@ apply from: '../upload.gradle'
 
 android {
 
-    compileSdk rootProject.ext.android.compileSdkVersion
+    compileSdk Libs.dep.compile_sdk_version()
     defaultConfig {
-        minSdk rootProject.ext.android.minSdkVersion
-        targetSdk rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdk Libs.dep.min_sdk_version()
+        targetSdk Libs.dep.target_sdk_version()
+        versionCode Libs.dep.version_code()
+        versionName Libs.dep.version_name()
         consumerProguardFiles "consumer-rules.pro"
     }
 
@@ -32,32 +32,33 @@ android {
 }
 
 dependencies {
-    implementation rootProject.ext.dependencies['constraintlayout']
-    implementation rootProject.ext.dependencies['recyclerview']
-    implementation rootProject.ext.dependencies['multidex']
-    implementation rootProject.ext.dependencies['exifinterface']
-    implementation rootProject.ext.dependencies['cardview']
-    implementation rootProject.ext.dependencies['start-up']
-    implementation rootProject.ext.dependencies['appcompat']
-    implementation rootProject.ext.dependencies['viewpager2']
-    implementation rootProject.ext.dependencies['material']
 
-    implementation rootProject.ext.dependencies['lifecycle-viewmodel']
-    implementation rootProject.ext.dependencies['lifecycle-extensions']
+    implementation Libs.dep.androidx_constraintlayout()
+    implementation Libs.dep.androidx_recyclerview()
+    implementation Libs.dep.androidx_multidex()
+    implementation Libs.dep.androidx_exifinterface()
+    implementation Libs.dep.androidx_cardview()
+    implementation Libs.dep.androidx_startup_runtime()
 
+    implementation Libs.dep.androidx_appcompat()
+    implementation Libs.dep.androidx_viewpager2()
+    implementation Libs.dep.material()
+
+    implementation Libs.dep.androidx_lifecycle_viewmodel_ktx()
+    implementation Libs.dep.androidx_lifecycle_extensions()
 
     // kotlin
-    implementation rootProject.ext.dependencies['kotlin-std']
-    implementation rootProject.ext.dependencies['kotlin-reflect']
-    implementation rootProject.ext.dependencies['kotlin-core']
+    implementation Libs.dep.kotlin_stdlib()
+    implementation Libs.dep.kotlin_reflect()
+    implementation Libs.dep.androidx_core_ktx()
 
     // okio
-    implementation rootProject.ext.dependencies['okio']
+    implementation Libs.dep.okio()
 
     // gson
-    implementation rootProject.ext.dependencies['gson']
+    implementation Libs.dep.gson()
 
     // java base
-    api rootProject.ext.debug['teemo-java-base']
+    api Libs.dep.teemo_java_base()
 
 }

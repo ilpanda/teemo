@@ -2,12 +2,12 @@ apply plugin: 'com.android.library'
 apply from: '../publish-mavencentral.gradle'
 
 android {
-    compileSdk rootProject.ext.android.compileSdkVersion
+    compileSdk Libs.dep.compile_sdk_version()
     defaultConfig {
-        minSdk rootProject.ext.android.minSdkVersion
-        targetSdk rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdk Libs.dep.min_sdk_version()
+        targetSdk Libs.dep.target_sdk_version()
+        versionCode Libs.dep.version_code()
+        versionName Libs.dep.version_name()
 
 
         externalNativeBuild {
@@ -38,5 +38,5 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestImplementation 'junit:junit:4.12'
+    androidTestImplementation Libs.dep.test_junit()
 }

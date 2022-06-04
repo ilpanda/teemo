@@ -6,12 +6,12 @@ plugins {
 apply from: '../publish-mavencentral.gradle'
 
 android {
-    compileSdk rootProject.ext.android.compileSdkVersion
+    compileSdk Libs.dep.compile_sdk_version()
     defaultConfig {
-        minSdk rootProject.ext.android.minSdkVersion
-        targetSdk rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdk Libs.dep.min_sdk_version()
+        targetSdk Libs.dep.target_sdk_version()
+        versionCode Libs.dep.version_code()
+        versionName Libs.dep.version_name()
 
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -33,21 +33,21 @@ android {
 
 dependencies {
 
-    implementation rootProject.ext.dependencies['kotlin-core']
-    implementation rootProject.ext.dependencies['core']
+    implementation Libs.dep.androidx_core()
+    implementation Libs.dep.androidx_core_ktx()
 
-    implementation rootProject.ext.dependencies['appcompat']
-    implementation rootProject.ext.dependencies['material']
-    implementation rootProject.ext.dependencies['okio']
+    implementation Libs.dep.androidx_appcompat()
+    implementation Libs.dep.material()
+    implementation Libs.dep.okio()
 
 
     // 万能 Adapter
-    implementation rootProject.ext.dependencies['adapter']
+    implementation Libs.dep.base_recyclerview_adapter_helper()
 
-    api rootProject.ext.debug['teemo-android-common']
+    api Libs.dep.teemo_android_common()
 
     // epic
-    api rootProject.ext.debug['teemo-android-epic-demo']
+    api Libs.dep.teemo_android_epic_demo()
 
 
 }

@@ -1,0 +1,27 @@
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'kotlin'
+
+buildscript {
+    ext.kotlin_version = "1.6.21"
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/public" }
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+        maven { url "https://maven.aliyun.com/repository/google" }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    maven { url "https://maven.aliyun.com/repository/public" }
+    maven { url "https://maven.aliyun.com/repository/google" }
+    mavenLocal()
+    mavenCentral()
+    google()
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation "io.github.ilpanda.teemo:teemo-version-library:1.0.1"
+}

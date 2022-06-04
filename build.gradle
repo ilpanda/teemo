@@ -1,18 +1,17 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-apply from: 'config.gradle'
 
 buildscript {
-    ext.kotlin_version = '1.5.32'
-
     repositories {
         maven { url "https://maven.aliyun.com/repository/public" }
         maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
         maven { url "https://maven.aliyun.com/repository/google" }
+        mavenCentral()
+        google()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.3"
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.3'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21"
+        classpath Libs.dep.gradle_tool_plugin()
+        classpath Libs.dep.kotlin_gradle_plugin()
+        classpath Libs.dep.butterknife_compiler()
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -26,6 +25,8 @@ allprojects {
         maven { url "https://maven.aliyun.com/repository/google" }
         maven { url 'https://jitpack.io' }
         maven { url 'https://github.com/mak0t0san/stetho-realm/raw/master/maven-repo' }
+        mavenCentral()
+        google()
     }
 }
 

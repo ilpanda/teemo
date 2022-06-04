@@ -1,14 +1,17 @@
 rootProject.name = "Teemo"
-include ':app'
+if (gradle.parent == null) {
+    include ':app'
+}
 include ':arch-common'
 include ':arch-debug'
 include ':arch-java-base'
 include ':arch-toast'
-include ':arch-apm-plugin'
+//include ':arch-apm-plugin'
 include ':arch-epic'
 include ':arch-epic-no-op'
 include ':arch-epic-demo'
 include ':arch-free-reflection'
+include ':arch-version-library'
 
 apply from: "./user_dependency.gradle"
 

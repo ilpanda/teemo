@@ -2,13 +2,13 @@ apply plugin: 'com.android.library'
 apply from: rootProject.file('publish-mavencentral.gradle')
 
 android {
-    compileSdkVersion rootProject.ext.android.compileSdkVersion
+    compileSdkVersion Libs.dep.compile_sdk_version()
 
     defaultConfig {
-        minSdkVersion rootProject.ext.android.minSdkVersion
-        targetSdkVersion rootProject.ext.android.targetSdkVersion
-        versionCode rootProject.ext.android.versionCode
-        versionName rootProject.ext.android.versionName
+        minSdkVersion Libs.dep.min_sdk_version()
+        targetSdkVersion Libs.dep.target_sdk_version()
+        versionCode Libs.dep.version_code()
+        versionName Libs.dep.version_name()
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -39,14 +39,15 @@ android {
         abortOnError false
     }
 
-    ndkVersion '22.1.7171670'
+    ndkVersion '21.4.7075529'
 }
 
 dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation rootProject.ext.debug['teemo-android-free-reflection']
-    implementation 'me.weishu.exposed:exposed-xposedapi:0.4.5'
+    implementation Libs.dep.teemo_android_free_reflection()
+
+    implementation Libs.dep.exposed_xposedapi()
 
 }

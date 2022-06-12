@@ -4,12 +4,12 @@ public class DefaultDependencyManager implements IDependencyManager {
 
     @Override
     public String gradle_tool_plugin() {
-        return Constants.ClassPath.KOTLIN_GRADLE_PLUGIN;
+        return Constants.ClassPath.GRADLE_TOOL_PLUGIN;
     }
 
     @Override
     public String kotlin_gradle_plugin() {
-        return Constants.ClassPath.GRADLE_TOOL_PLUGIN;
+        return Constants.ClassPath.KOTLIN_GRADLE_PLUGIN;
     }
 
     @Override

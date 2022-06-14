@@ -1,0 +1,49 @@
+apply plugin: AliyunPlugin
+
+class AliyunPlugin implements Plugin<Gradle> {
+
+    private static String GOOGLE_REPOSITORY_URL = "https://dl.google.com/dl/android/maven2/"
+    private static String MAVEN_REPOSITORY_URL = "https://repo.maven.apache.org/maven2/"
+
+    private static String ALIYUN_PUBLIC = "https://maven.aliyun.com/repository/public"
+    private static String ALIYUN_GOOGLE = "https://maven.aliyun.com/repository/google"
+
+    private boolean removeRepo = false;
+
+    void apply(Gradle gradle) {
+        def closure = {
+            def addAliyunPublic = true
+            def addAliyunGoogle = true
+            if (removeRepo) {
+                all { ArtifactRepository repo ->
+                    if (repo.hasProperty("url") && (repo.url.toString() == GOOGLE_REPOSITORY_URL || repo.url.toString() == MAVEN_REPOSITORY_URL)) {
+                        println "Repository ${repo.url} removed"
+                        remove repo
+                    }
+
+                    if (repo.hasProperty("url") && repo.url.toString() == ALIYUN_PUBLIC) {
+                        addAliyunPublic = false
+                    }
+
+                    if (repo.hasProperty("url") && repo.url.toString() == ALIYUN_GOOGLE) {
+                        addAliyunGoogle = false
+                    }
+                }
+            }
+            if (addAliyunPublic) {
+                maven { url ALIYUN_PUBLIC }
+            }
+            if (addAliyunGoogle) {
+                maven { url ALIYUN_GOOGLE }
+            }
+        }
+
+        gradle.projectsEvaluated {
+            gradle.rootProject.buildscript.repositories(closure)
+        }
+
+        gradle.allprojects { project ->
+            project.repositories(closure)
+        }
+    }
+}

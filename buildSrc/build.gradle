@@ -16,12 +16,11 @@ buildscript {
 repositories {
     maven { url "https://maven.aliyun.com/repository/public" }
     maven { url "https://maven.aliyun.com/repository/google" }
-    mavenLocal()
     mavenCentral()
     google()
 }
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    implementation "io.github.ilpanda.teemo:teemo-version-library:1.0.1"
+    implementation "io.github.ilpanda.teemo:teemo-version-library:1.0.2"
 }

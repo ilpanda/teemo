@@ -1,4 +1,4 @@
-package com.ilpanda.plugin
+package com.ilpanda.arch
 
 import groovy.json.JsonSlurper
 import org.gradle.api.Plugin

@@ -23,9 +23,9 @@ uploadArchives {
     repositories {
         mavenDeployer {
             // 设置 groupId 通常为包名
-            pom.groupId = 'com.ilpanda'
+            pom.groupId = 'com.ilpanda.plugin'
             // 设置 artifactId
-            pom.artifactId = 'plugin'
+            pom.artifactId = 'LibPlugin'
             // 设置插件的版本号
             pom.version = '1.0.0'
             // 设置发布路径为工程根目录下面的 repo 文件夹

@@ -1,0 +1,55 @@
+buildscript {
+    repositories {
+        maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0"
+    }
+}
+
+repositories {
+    maven { url "https://maven.aliyun.com/repository/public" }
+    maven { url "https://maven.aliyun.com/repository/google" }
+}
+
+apply plugin: 'org.jetbrains.kotlin.jvm'
+apply plugin: 'java-gradle-plugin'
+apply plugin: 'maven'
+apply plugin: 'groovy'
+apply plugin: 'groovy'
+apply from: '../publish-mavencentral.gradle'
+
+dependencies {
+    implementation gradleApi()   // gradle sdk
+    implementation localGroovy() // groovy sdk
+
+    implementation 'com.google.code.gson:gson:2.9.0'
+}
+
+
+gradlePlugin {
+    plugins {
+        version {
+            // 在 app 模块需要通过 id 引用这个插件
+            id = 'com.ilpanda.myandroid.plugin.substitute'
+            // 实现这个插件的类的路径
+            implementationClass = 'com.ilpanda.plugin.SubstitutePlugin'
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            // 设置 groupId 通常为包名
+            pom.groupId = 'com.ilpanda.myandroid'
+            // 设置 artifactId
+            pom.artifactId = 'substitute'
+            // 设置插件的版本号
+            pom.version = '1.0.0'
+            // 设置发布路径为 Gradle 默认仓库地址，USER_HOME/.m2/repository/ 目录，其中 USER_HOME 表示用户目录，如：/Users/apple/.m2/repository
+            // 发布到 USER_HOME/.m2/repository/ 目录，则项目根目录 build.gradle 中的 repositories 需要添加引入本地仓库  mavenLocal() 。
+            repository(url: mavenLocal().getUrl())
+        }
+    }
+}

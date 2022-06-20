@@ -27,7 +27,7 @@ fun <T> File.fromJson(clz: Class<T>): T? {
  */
 inline fun <reified T : Any> File.fromJson(): T? {
     try {
-        this.fromJson(T::class.java)
+        return this.fromJson(T::class.java)
     } catch (e: Exception) {
         TMLog.e("JsonUtils", e.stackTraceToString())
     }

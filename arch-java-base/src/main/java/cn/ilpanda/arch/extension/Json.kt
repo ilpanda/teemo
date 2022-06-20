@@ -10,12 +10,24 @@ import java.io.File
 /**
  * 读取 Json 文件
  */
-fun <T> File.toJson(clz: Class<T>): T? {
+fun <T> File.fromJson(clz: Class<T>): T? {
     try {
         val string = this.source().buffer().use {
             it.readUtf8()
         }
         return JsonUtils.fromJson(string, clz)
+    } catch (e: Exception) {
+        TMLog.e("JsonUtils", e.stackTraceToString())
+    }
+    return null
+}
+
+/**
+ * 读取 Json 文件
+ */
+inline fun <reified T : Any> File.fromJson(): T? {
+    try {
+        return this.fromJson(T::class.java)
     } catch (e: Exception) {
         TMLog.e("JsonUtils", e.stackTraceToString())
     }

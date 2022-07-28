@@ -2,6 +2,10 @@ package com.ilpanda.arch.common.kotlin
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.drawable.GradientDrawable
+import androidx.annotation.ColorInt
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -59,9 +63,12 @@ private fun calculateInSampleSize(
     reqWidth: Int,
     reqHeight: Int,
     options: BitmapFactory.Options,
-    centerInside: Boolean) {
-    calculateInSampleSize(reqWidth, reqHeight, options.outWidth, options.outHeight, options,
-        centerInside)
+    centerInside: Boolean
+) {
+    calculateInSampleSize(
+        reqWidth, reqHeight, options.outWidth, options.outHeight, options,
+        centerInside
+    )
 }
 
 
@@ -71,7 +78,8 @@ private fun calculateInSampleSize(
     width: Int,
     height: Int,
     options: BitmapFactory.Options,
-    centerInside: Boolean) {
+    centerInside: Boolean
+) {
     var sampleSize = 1
     if (height > reqHeight || width > reqWidth) {
         val heightRatio: Int
@@ -83,9 +91,37 @@ private fun calculateInSampleSize(
         } else {
             heightRatio = Math.floor((height.toFloat() / reqHeight.toFloat()).toDouble()).toInt()
             widthRatio = Math.floor((width.toFloat() / reqWidth.toFloat()).toDouble()).toInt()
-            sampleSize = if (centerInside) Math.max(heightRatio, widthRatio) else Math.min(heightRatio, widthRatio)
+            sampleSize = if (centerInside) Math.max(heightRatio, widthRatio) else Math.min(
+                heightRatio,
+                widthRatio
+            )
         }
     }
     options.inSampleSize = sampleSize
     options.inJustDecodeBounds = false
 }
+
+
+/**
+ * Bitmap 刷色处理，保留原有 Bitmap 的透明度，使用新的颜色
+ *
+ * @param bitmap 需要刷色的 Bitmap
+ * @param color 需要修改的颜色色值
+ *
+ * */
+fun changeBitmapColor(bitmap: Bitmap?, @ColorInt color: Int): Bitmap? {
+    if (bitmap == null) {
+        return null
+    }
+    val targetBitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, Bitmap.Config.ARGB_8888)
+    targetBitmap.density = bitmap.density
+    targetBitmap.setHasAlpha(bitmap.hasAlpha())
+    val canvas = Canvas(targetBitmap)
+    val paint = Paint()
+    paint.color = color
+    canvas.drawBitmap(bitmap.extractAlpha(), 0f, 0f, paint)
+    bitmap.recycle()
+    return targetBitmap
+}
+
+

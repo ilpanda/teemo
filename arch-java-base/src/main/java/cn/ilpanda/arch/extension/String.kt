@@ -15,6 +15,9 @@ import kotlin.system.exitProcess
  */
 fun String.multiLine() = split("\\r?\\n|\\r".toRegex())
 
+/**
+ * 将 Throwable 的堆栈转换为 String
+ */
 fun Throwable.toStackTrace(): String {
     val result: Writer = StringWriter()
     val printWriter = PrintWriter(result)
@@ -26,14 +29,14 @@ fun Throwable.toStackTrace(): String {
 }
 
 /**
- * 移除字符串末尾的文件扩展
+ * 移除字符串末尾的文件扩展命名，如：foo.txt -> foo
  */
-fun String.removeExtension(fileName: String): String {
-    val lastIndex = fileName.lastIndexOf('.')
+fun String.removeExtension(): String {
+    val lastIndex = this.lastIndexOf('.')
     if (lastIndex != -1) {
-        return fileName.substring(0, lastIndex)
+        return this.substring(0, lastIndex)
     }
-    return fileName
+    return this
 }
 
 fun String.exec(ignoreError: Boolean = false): String {

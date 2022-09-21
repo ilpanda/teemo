@@ -7,6 +7,12 @@ import java.io.StringWriter
 import java.io.Writer
 import kotlin.system.exitProcess
 
+/**
+ * 根据换行符对字符串进行分割等价于 String.lines()
+ * \n： Unix、Linux 和 macOS。
+ * \r\n：Windows 。
+ * \r: macOS 9 以及早期版本。
+ */
 fun String.multiLine() = split("\\r?\\n|\\r".toRegex())
 
 fun Throwable.toStackTrace(): String {
@@ -17,6 +23,17 @@ fun Throwable.toStackTrace(): String {
     val stackTrace = result.toString()
     printWriter.close()
     return stackTrace.trim { it <= ' ' }
+}
+
+/**
+ * 移除字符串末尾的文件扩展
+ */
+fun String.removeExtension(fileName: String): String {
+    val lastIndex = fileName.lastIndexOf('.')
+    if (lastIndex != -1) {
+        return fileName.substring(0, lastIndex)
+    }
+    return fileName
 }
 
 fun String.exec(ignoreError: Boolean = false): String {

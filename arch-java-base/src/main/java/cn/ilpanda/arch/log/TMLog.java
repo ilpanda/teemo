@@ -14,11 +14,12 @@
  * limitations under the License.
  */
 
-package cn.ilpanda.arch.java.base;
+package cn.ilpanda.arch.log;
 
 public class TMLog {
 
     public interface TMLogDelegate {
+
         void e(final String tag, final String msg, final Object... obj);
 
         void w(final String tag, final String msg, final Object... obj);
@@ -28,6 +29,8 @@ public class TMLog {
         void d(final String tag, final String msg, final Object... obj);
 
         void printErrStackTrace(String tag, Throwable tr, final String format, final Object... obj);
+
+        void printErrStackTrace(String tag, Throwable tr);
     }
 
     private static TMLogDelegate sDelegete = null;
@@ -65,4 +68,11 @@ public class TMLog {
             sDelegete.printErrStackTrace(tag, tr, format, obj);
         }
     }
+
+    public static void printErrStackTrace(String tag, Throwable tr) {
+        if (sDelegete != null) {
+            sDelegete.printErrStackTrace(tag, tr);
+        }
+    }
+
 }

@@ -2,7 +2,7 @@ package cn.ilpanda.arch.extension
 
 import cn.ilpanda.arch.java.base.Closeables
 import cn.ilpanda.arch.java.base.CrashUtil
-import cn.ilpanda.arch.java.base.TMLog
+import cn.ilpanda.arch.log.TMLog
 import okio.buffer
 import okio.sink
 import okio.source

@@ -6,6 +6,8 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import cn.ilpanda.arch.log.TMLog;
+
 public class JsonUtils {
 
     private static final String TAG = JsonUtils.class.getSimpleName();
@@ -40,7 +42,7 @@ public class JsonUtils {
             Gson gson = new Gson();
             return gson.toJson(src, clz);
         } catch (Exception e) {
-            e.printStackTrace();
+            TMLog.printErrStackTrace(TAG, e);
         }
         return null;
     }
@@ -54,7 +56,7 @@ public class JsonUtils {
             Gson gson = new Gson();
             return gson.toJson(src);
         } catch (Exception e) {
-            e.printStackTrace();
+            TMLog.printErrStackTrace(TAG, e);
         }
         return null;
     }

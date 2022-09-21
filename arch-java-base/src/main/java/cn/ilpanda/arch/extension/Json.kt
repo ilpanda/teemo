@@ -1,7 +1,7 @@
 package cn.ilpanda.arch.extension
 
 import cn.ilpanda.arch.java.base.JsonUtils
-import cn.ilpanda.arch.java.base.TMLog
+import cn.ilpanda.arch.log.TMLog
 import com.google.gson.GsonBuilder
 import okio.buffer
 import okio.source

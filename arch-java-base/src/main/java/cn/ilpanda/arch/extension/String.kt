@@ -2,9 +2,22 @@ package cn.ilpanda.arch.extension
 
 import okio.buffer
 import okio.source
+import java.io.PrintWriter
+import java.io.StringWriter
+import java.io.Writer
 import kotlin.system.exitProcess
 
 fun String.multiLine() = split("\\r?\\n|\\r".toRegex())
+
+fun Throwable.toStackTrace(): String {
+    val result: Writer = StringWriter()
+    val printWriter = PrintWriter(result)
+    val cause: Throwable = this
+    cause.printStackTrace(printWriter)
+    val stackTrace = result.toString()
+    printWriter.close()
+    return stackTrace.trim { it <= ' ' }
+}
 
 fun String.exec(ignoreError: Boolean = false): String {
     return Runtime.getRuntime().exec(arrayOf("/bin/sh", "-c", this)).let { it ->

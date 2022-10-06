@@ -10,7 +10,7 @@ public class Constants {
 
     public static class Version {
         public static int MIN_SDK_VERSION = 21;
-        public static int TARGET_SDK_VERSION = 28;
+        public static int TARGET_SDK_VERSION = 29;
         public static String BUILD_TOOLS_VERSION = "29.0.3";
         public static int COMPILE_SDK_VERSION = 31;
         public static String KOTLIN_VERSION = "1.5.32";
@@ -36,12 +36,11 @@ public class Constants {
         public static String CARDVIEW = "androidx.cardview:cardview:1.0.0";
         public static String APPCOMPAT = "androidx.appcompat:appcompat:1.2.0";
         public static String CORE = "androidx.core:core:1.6.0";
+        public static String CORE_KTX = "androidx.core:core-ktx:1.6.0";
         public static String STARTUP_RUNTIME = "androidx.startup:startup-runtime:1.0.0";
         public static String ANNOTATION = "androidx.annotation:annotation:1.2.0";
         public static String VIEWPAGER2 = "androidx.viewpager2:viewpager2:1.0.0";
-        public static String CORE_KTX = "androidx.core:core-ktx:1.6.0";
         public static String ASYNCLAYOUTINFLATER = "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0";
-
     }
 
     public static class Kotlin {

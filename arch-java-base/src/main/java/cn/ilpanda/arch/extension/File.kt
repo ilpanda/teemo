@@ -7,6 +7,7 @@ import java.io.File
 import kotlin.io.use
 
 @Throws(IOException::class)
+@Deprecated("should use File.copyTo(...)")
 fun File.copy(dst: File) {
     source().buffer().use { source ->
         dst.sink().buffer().use {

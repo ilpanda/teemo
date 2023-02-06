@@ -25,7 +25,7 @@ public class Constants {
         public static String MULTIDEX = "androidx.multidex:multidex:2.0.1";
         public static String EXIFINTERFACE = "androidx.exifinterface:exifinterface:1.3.1";
 
-        public static String LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:2.2.0";
+        public static String LIFECYCLE_EXTENSIONS = "androidx.lifecycle:lifecycle-extensions:" + Version.LIFECYCLE_VERSION;
         public static String LIFECYCLE_COMPILER = "androidx.lifecycle:lifecycle-compiler:" + Version.LIFECYCLE_VERSION;
         public static String LIFECYCLE_COMMON = "androidx.lifecycle:lifecycle-common:" + Version.LIFECYCLE_VERSION;
         public static String LIFECYCLE_VIEWMODEL_KTX = "androidx.lifecycle:lifecycle-viewmodel-ktx:" + Version.LIFECYCLE_VERSION;
